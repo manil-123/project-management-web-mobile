@@ -68,14 +68,10 @@ class NetworkExceptions with _$NetworkExceptions {
             case DioErrorType.connectTimeout:
               networkExceptions = const NetworkExceptions.requestTimeout();
               break;
-
-            case DioErrorType.response:
-              networkExceptions =
-                  NetworkExceptions.handleResponse(error.response?.statusCode);
-              break;
             // ignore: no_default_cases
             default:
-              networkExceptions = const NetworkExceptions.unexpectedError();
+              networkExceptions =
+                  NetworkExceptions.handleResponse(error.response?.statusCode);
               break;
           }
         } else if (error is SocketException) {
