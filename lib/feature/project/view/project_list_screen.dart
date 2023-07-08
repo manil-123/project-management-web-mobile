@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
+import 'package:project_management_web_and_mobile/feature/project/view/project_drawer.dart';
 
 class ProjectListScreen extends StatelessWidget {
   const ProjectListScreen({super.key});
@@ -9,16 +9,19 @@ class ProjectListScreen extends StatelessWidget {
     return Scaffold(
       body: ConstrainedBox(
         constraints: BoxConstraints(
-          maxWidth: MediaQuery.sizeOf(context).width * 0.8,
-          maxHeight: MediaQuery.sizeOf(context).height * 0.8,
+          maxWidth: MediaQuery.sizeOf(context).width,
+          maxHeight: MediaQuery.sizeOf(context).height,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
           children: [
-            Text(
-              'Projects',
-              style: AppTextStyle.boldText20,
-            )
+            const Expanded(
+              flex: 1,
+              child: ProjectDrawer(),
+            ),
+            Flexible(
+              flex: 5,
+              child: Container(),
+            ),
           ],
         ),
       ),
