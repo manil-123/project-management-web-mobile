@@ -9,7 +9,6 @@ import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
 import 'package:project_management_web_and_mobile/feature/auth/provider/auth_provider.dart';
 import 'package:project_management_web_and_mobile/providers/dependency_providers.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
-import 'dart:developer';
 
 final selectedScreenProvider = StateProvider<int>((ref) => 0);
 
@@ -19,8 +18,6 @@ class ProjectDrawer extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedScreenIndex = ref.watch(selectedScreenProvider);
-    log(selectedScreenIndex.toString());
-
     final userDetailFuture = useMemoized(
       () => ref.read(userDaoProvider).getUserDetails(),
     );
@@ -61,7 +58,7 @@ class ProjectDrawer extends HookConsumerWidget {
             icon: Icons.settings,
             title: 'Settings',
             onTap: () {
-              ref.read(selectedScreenProvider.notifier).state = 1;
+              ref.read(selectedScreenProvider.notifier).state = 2;
             },
             isSelected: selectedScreenIndex == 2,
           ),

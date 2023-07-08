@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_management_web_and_mobile/feature/project/view/project_content_screen.dart';
 import 'package:project_management_web_and_mobile/feature/project/view/project_drawer.dart';
 
 class ProjectListScreen extends StatelessWidget {
@@ -12,15 +13,15 @@ class ProjectListScreen extends StatelessWidget {
           maxWidth: MediaQuery.sizeOf(context).width,
           maxHeight: MediaQuery.sizeOf(context).height,
         ),
-        child: Row(
+        child: const Row(
           children: [
-            const Expanded(
+            Expanded(
               flex: 1,
               child: ProjectDrawer(),
             ),
             Flexible(
               flex: 5,
-              child: Container(),
+              child: ProjectContentScreen(),
             ),
           ],
         ),
