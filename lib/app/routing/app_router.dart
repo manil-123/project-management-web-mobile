@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:project_management_web_and_mobile/app/routing/routes.dart';
-import 'package:project_management_web_and_mobile/feature/auth/view/login_screen.dart';
+import 'package:project_management_web_and_mobile/feature/auth/view/auth_screen.dart';
 import 'package:project_management_web_and_mobile/feature/project/view/project_list_screen.dart';
 
 @MaterialAutoRouter(
@@ -8,7 +8,7 @@ import 'package:project_management_web_and_mobile/feature/project/view/project_l
   routes: [
     AutoRoute(
       path: Routes.loginRoute,
-      page: LoginScreen,
+      page: AuthScreen,
       initial: true,
     ),
     AutoRoute(

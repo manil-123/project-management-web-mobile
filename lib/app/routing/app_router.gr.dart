@@ -14,7 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:flutter/material.dart' as _i4;
 
-import '../../feature/auth/view/login_screen.dart' as _i1;
+import '../../feature/auth/view/auth_screen.dart' as _i1;
 import '../../feature/project/view/project_list_screen.dart' as _i2;
 
 class AppRouter extends _i3.RootStackRouter {
@@ -23,10 +23,10 @@ class AppRouter extends _i3.RootStackRouter {
 
   @override
   final Map<String, _i3.PageFactory> pagesMap = {
-    LoginRoute.name: (routeData) {
+    AuthRoute.name: (routeData) {
       return _i3.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.LoginScreen(),
+        child: const _i1.AuthScreen(),
       );
     },
     ProjectListRoute.name: (routeData) {
@@ -46,7 +46,7 @@ class AppRouter extends _i3.RootStackRouter {
           fullMatch: true,
         ),
         _i3.RouteConfig(
-          LoginRoute.name,
+          AuthRoute.name,
           path: '/login',
         ),
         _i3.RouteConfig(
@@ -57,15 +57,15 @@ class AppRouter extends _i3.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.LoginScreen]
-class LoginRoute extends _i3.PageRouteInfo<void> {
-  const LoginRoute()
+/// [_i1.AuthScreen]
+class AuthRoute extends _i3.PageRouteInfo<void> {
+  const AuthRoute()
       : super(
-          LoginRoute.name,
+          AuthRoute.name,
           path: '/login',
         );
 
-  static const String name = 'LoginRoute';
+  static const String name = 'AuthRoute';
 }
 
 /// generated route for
