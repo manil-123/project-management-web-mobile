@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
-import 'package:project_management_web_and_mobile/core/config/api_config.dart';
+import 'package:project_management_web_and_mobile/api/api_config.dart';
 
 final dio = Dio(); // With default `Options`.
 
 void configureDio() {
   // Set default configs
   dio.options.baseUrl = ApiConfig.apiBaseUrl;
-  dio.options.connectTimeout = const Duration(seconds: 20);
-  dio.options.receiveTimeout = const Duration(seconds: 20);
+  dio.options.connectTimeout = 20000;
+  dio.options.receiveTimeout = 20000;
   var logger = Logger(
     filter: null,
     printer: PrettyPrinter(colors: true),
@@ -34,7 +34,7 @@ void configureDio() {
           return handler.next(response);
         }
       },
-      onError: (DioException e, ErrorInterceptorHandler handler) {
+      onError: (DioError e, ErrorInterceptorHandler handler) {
         logger.e(e.toString());
         if (e.response?.statusCode == 401) {
           // handle unauthorized case here
