@@ -1,7 +1,7 @@
-import 'dart:developer';
-
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:project_management_web_and_mobile/app/routing/app_router.gr.dart';
 import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
 import 'package:project_management_web_and_mobile/app/widgets/custom_text_form_field.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
@@ -182,6 +182,9 @@ class _LoginSignUpWidgetState extends State<LoginSignUpWidget> {
         InkWell(
           onTap: () {
             // Login or sign up with api later on
+            context.router.push(
+              const ProjectListRoute(),
+            );
           },
           child: Container(
             width: double.infinity,
