@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project_management_web_and_mobile/locator.dart';
 import 'views/auth/login_screen.dart';
 
 void main() {
+  setUpLocator();
   runApp(const MyApp());
 }
 
