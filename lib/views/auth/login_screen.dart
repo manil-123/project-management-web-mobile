@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
 import 'package:project_management_web_and_mobile/app/widgets/custom_text_form_field.dart';
@@ -24,7 +27,7 @@ class LoginScreen extends StatelessWidget {
                 height: MediaQuery.sizeOf(context).height * 0.8,
                 width: MediaQuery.sizeOf(context).width * 0.8,
                 color: Colors.white,
-                child: const LoginWidget(),
+                child: const LoginSignUpWidget(),
               ),
             ),
           ),
@@ -96,7 +99,7 @@ class LoginScreen extends StatelessWidget {
                     height: double.infinity,
                     width: MediaQuery.sizeOf(context).width * 0.4,
                     color: Colors.white,
-                    child: const LoginWidget(),
+                    child: const LoginSignUpWidget(),
                   ),
                 ],
               ),
@@ -106,17 +109,18 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class LoginWidget extends StatefulWidget {
-  const LoginWidget({super.key});
+class LoginSignUpWidget extends StatefulWidget {
+  const LoginSignUpWidget({super.key});
 
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  State<LoginSignUpWidget> createState() => _LoginSignUpWidgetState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
+class _LoginSignUpWidgetState extends State<LoginSignUpWidget> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  bool _isLogin = true;
   bool _isPasswordVisible = false;
 
   @override
@@ -142,7 +146,9 @@ class _LoginWidgetState extends State<LoginWidget> {
           ),
         ).pB(10),
         Text(
-          'Enter the information you entered while registering.',
+          _isLogin
+              ? 'Enter the information you entered while registering.'
+              : 'Enter the information for registration.',
           style: AppTextStyle.regularText12.copyWith(
             color: Colors.black.withOpacity(0.5),
           ),
@@ -174,6 +180,9 @@ class _LoginWidgetState extends State<LoginWidget> {
           },
         ).pB(30),
         InkWell(
+          onTap: () {
+            // Login or sign up with api later on
+          },
           child: Container(
             width: double.infinity,
             decoration: const BoxDecoration(
@@ -192,13 +201,39 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
             child: Center(
               child: Text(
-                'Login',
+                _isLogin ? 'Login' : 'Sign Up',
                 style: AppTextStyle.semiBoldText14.copyWith(
                   color: Colors.white,
                 ),
               ).pY(10),
             ),
           ),
+        ).pB(30),
+        Center(
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: _isLogin
+                      ? 'Don\'t have account?'
+                      : 'Already have account?',
+                  style: AppTextStyle.semiBoldText12.copyWith(
+                    color: Colors.black.withOpacity(0.5),
+                  ),
+                ),
+                TextSpan(
+                  text: _isLogin ? ' Sign Up' : ' Login',
+                  style: AppTextStyle.semiBoldText12,
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      setState(() {
+                        _isLogin = !_isLogin;
+                      });
+                    },
+                ),
+              ],
+            ),
+          ).pB(10),
         ),
       ],
     ).pXY(60, 30);
