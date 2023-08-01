@@ -6,6 +6,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F9FF),
       body: Center(
         child: ConstrainedBox(
           constraints: BoxConstraints(
@@ -22,7 +23,7 @@ class LoginScreen extends StatelessWidget {
               Container(
                 height: double.infinity,
                 width: MediaQuery.sizeOf(context).width * 0.4,
-                color: Colors.red,
+                color: Colors.white,
               ),
             ],
           ),
