@@ -55,7 +55,9 @@ class LoginSignUpWidget extends HookConsumerWidget {
               children: [
                 TextSpan(
                   text: 'Hey, hello',
-                  style: AppTextStyle.boldText20,
+                  style: AppTextStyle.boldText20.copyWith(
+                    color: Colors.black,
+                  ),
                 ),
                 TextSpan(
                   text: ' 👋',
