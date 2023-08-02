@@ -12,6 +12,7 @@ import 'package:project_management_web_and_mobile/app/widgets/message_widget.dar
 import 'package:project_management_web_and_mobile/feature/auth/model/auth_response.dart';
 import 'package:project_management_web_and_mobile/feature/auth/provider/auth_provider.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
+import 'package:project_management_web_and_mobile/utils/extensions/shake_extension.dart';
 
 class LoginSignUpWidget extends HookConsumerWidget {
   const LoginSignUpWidget(
@@ -27,6 +28,7 @@ class LoginSignUpWidget extends HookConsumerWidget {
 
     final isLogin = useState<bool>(true);
     final isPasswordVisible = useState<bool>(false);
+    final shakeButton = useState<bool>(false);
 
     final loginModel = ref.watch<GenericState<AuthResponse>>(authProvider);
 
@@ -120,42 +122,29 @@ class LoginSignUpWidget extends HookConsumerWidget {
                       emailController.text.trim(),
                       passwordController.text.trim(),
                     );
+              } else {
+                shakeButton.value = true;
+                Future.delayed(const Duration(milliseconds: 1500), () {
+                  shakeButton.value = false;
+                });
               }
             },
-            child: Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-                gradient: LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [
-                    Color(0xFF5DA4FA),
-                    Color(0xFF6072FA),
-                    Color(0xFF9184FB),
-                  ],
-                ),
-              ),
-              child: Center(
-                child: loginModel.maybeWhen(
-                  orElse: () {
-                    return Text(
-                      isLogin.value ? 'Login' : 'Sign Up',
-                      style: AppTextStyle.semiBoldText14.copyWith(
-                        color: Colors.white,
-                      ),
-                    ).pY(10);
-                  },
-                  loading: () => const CustomProgressIndicator(
-                    dimension: 20,
-                    color: Colors.white,
-                    strokeWidth: 3.0,
-                  ).pY(10),
-                ),
-              ),
-            ),
+            child: shakeButton.value
+                ? LoginSignUpButton(
+                    loginModel: loginModel,
+                    isLogin: isLogin,
+                    shouldShakeButton: true,
+                  ).withShakeAnimation(
+                    delay: const Duration(milliseconds: 500),
+                    duration: const Duration(milliseconds: 1500),
+                    offset: const Offset(10.0, 0.0),
+                    shakes: 14.0,
+                  )
+                : LoginSignUpButton(
+                    loginModel: loginModel,
+                    isLogin: isLogin,
+                    shouldShakeButton: false,
+                  ),
           ).pB(30),
           Center(
             child: RichText(
@@ -185,6 +174,58 @@ class LoginSignUpWidget extends HookConsumerWidget {
           ),
         ],
       ).pXY(contentPadding, 30),
+    );
+  }
+}
+
+class LoginSignUpButton extends StatelessWidget {
+  const LoginSignUpButton({
+    super.key,
+    required this.loginModel,
+    required this.isLogin,
+    required this.shouldShakeButton,
+  });
+
+  final GenericState<AuthResponse> loginModel;
+  final ValueNotifier<bool> isLogin;
+  final bool shouldShakeButton;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(5),
+        ),
+        border: shouldShakeButton ? Border.all(color: Colors.red) : null,
+        gradient: const LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            Color(0xFF5DA4FA),
+            Color(0xFF6072FA),
+            Color(0xFF9184FB),
+          ],
+        ),
+      ),
+      child: Center(
+        child: loginModel.maybeWhen(
+          orElse: () {
+            return Text(
+              isLogin.value ? 'Login' : 'Sign Up',
+              style: AppTextStyle.semiBoldText14.copyWith(
+                color: shouldShakeButton ? Colors.red : Colors.white,
+              ),
+            ).pY(10);
+          },
+          loading: () => const CustomProgressIndicator(
+            dimension: 20,
+            color: Colors.white,
+            strokeWidth: 3.0,
+          ).pY(10),
+        ),
+      ),
     );
   }
 }
