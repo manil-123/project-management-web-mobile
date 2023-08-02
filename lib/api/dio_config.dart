@@ -6,7 +6,7 @@ import 'package:project_management_web_and_mobile/api/api_config.dart';
 
 final dioInstanceProvider = Provider<Dio>((ref) {
   return Dio()
-    ..options.baseUrl = ApiConfig.apiBaseUrl
+    ..options.baseUrl = ApiConfig.apiBaseUrlWeb
 // ..options.followRedirects = false
     ..options.validateStatus = ((status) => status! < 401)
     ..options.connectTimeout = 20000
@@ -20,7 +20,7 @@ final dioInstanceProvider = Provider<Dio>((ref) {
         ),
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          options.headers['Content-Type'] = 'application/json';
+          options.headers['Content-Type'] = "application/json";
           return handler.next(options);
         },
         onResponse: (e, handler) {
