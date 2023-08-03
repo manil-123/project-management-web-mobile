@@ -4,6 +4,7 @@ import 'package:project_management_web_and_mobile/api/network_exceptions.dart';
 import 'package:project_management_web_and_mobile/api/rest_client.dart';
 import 'package:project_management_web_and_mobile/app/error/failure.dart';
 import 'package:project_management_web_and_mobile/app/typedef/typedef.dart';
+import 'dart:developer';
 
 abstract class AuthRepository {
   GetAuthResponse login(String username, String password);
@@ -20,6 +21,7 @@ class AuthRepositoryImpl implements AuthRepository {
       fn: () async {
         final response =
             await _restClient.login(username: username, password: password);
+        log("response $response");
         if (response.success == true) {
           return Right(response);
         } else {
@@ -28,11 +30,13 @@ class AuthRepositoryImpl implements AuthRepository {
           ));
         }
       },
-      exceptionHandler: (error) => Left(
-        Failure(
-          errorMessage: NetworkExceptions.handleErrorToString(error),
-        ),
-      ),
+      exceptionHandler: (error) {
+        return Left(
+          Failure(
+            errorMessage: NetworkExceptions.handleErrorToString(error),
+          ),
+        );
+      },
     );
   }
 }

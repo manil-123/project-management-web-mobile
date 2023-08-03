@@ -4,25 +4,48 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:project_management_web_and_mobile/app/routing/app_router.gr.dart';
+import 'package:project_management_web_and_mobile/app/state/generic_state.dart';
 import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
+import 'package:project_management_web_and_mobile/app/widgets/custom_progress_indicator.dart';
 import 'package:project_management_web_and_mobile/app/widgets/custom_text_form_field.dart';
+import 'package:project_management_web_and_mobile/app/widgets/message_widget.dart';
+import 'package:project_management_web_and_mobile/feature/auth/model/auth_response.dart';
+import 'package:project_management_web_and_mobile/feature/auth/provider/auth_provider.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
 
 class LoginSignUpWidget extends HookConsumerWidget {
-  LoginSignUpWidget({super.key});
+  const LoginSignUpWidget(
+      {required this.formKey, required this.contentPadding, super.key});
 
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey;
+  final double contentPadding;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _emailController = useTextEditingController();
-    final _passwordController = useTextEditingController();
+    final emailController = useTextEditingController();
+    final passwordController = useTextEditingController();
 
-    final _isLogin = useState<bool>(true);
-    final _isPasswordVisible = useState<bool>(true);
+    final isLogin = useState<bool>(true);
+    final isPasswordVisible = useState<bool>(false);
+
+    final loginModel = ref.watch<GenericState<AuthResponse>>(authProvider);
+
+    ref.listen<GenericState<AuthResponse>>(authProvider, (previous, next) {
+      next.whenOrNull(
+        success: (loginModel) {
+          context.router.pushAndPopUntil(
+            const ProjectListRoute(),
+            predicate: (route) => false,
+          );
+        },
+        error: (message) {
+          showErrorInfo(context, message);
+        },
+      );
+    });
 
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -44,7 +67,7 @@ class LoginSignUpWidget extends HookConsumerWidget {
             ),
           ).pB(10),
           Text(
-            _isLogin.value
+            isLogin.value
                 ? 'Enter the information you entered while registering.'
                 : 'Enter the information for registration.',
             style: AppTextStyle.regularText12.copyWith(
@@ -56,32 +79,46 @@ class LoginSignUpWidget extends HookConsumerWidget {
             style: AppTextStyle.boldText16,
           ),
           CustomTextFormField(
-            controller: _emailController,
+            controller: emailController,
             prefixIcon: Icons.person,
             keyboardType: TextInputType.emailAddress,
+            validator: (name) {
+              if (name!.isEmpty) {
+                return 'Username cannot be empty';
+              }
+              return null;
+            },
           ).pB(20),
           Text(
             'Password',
             style: AppTextStyle.boldText16,
           ),
           CustomTextFormField(
-            controller: _passwordController,
+            controller: passwordController,
             prefixIcon: Icons.lock,
             keyboardType: TextInputType.visiblePassword,
-            obsecure: !_isPasswordVisible.value,
-            suffixIcon: _isPasswordVisible.value
+            obsecure: !isPasswordVisible.value,
+            validator: (password) {
+              if (password!.isEmpty) {
+                return 'Password cannot be empty';
+              }
+              return null;
+            },
+            suffixIcon: isPasswordVisible.value
                 ? Icons.visibility
                 : Icons.visibility_off,
             onSufficIconPress: () {
-              _isPasswordVisible.value = !_isPasswordVisible.value;
+              isPasswordVisible.value = !isPasswordVisible.value;
             },
           ).pB(30),
           InkWell(
             onTap: () {
-              // Login or sign up with api later on
-              context.router.push(
-                const ProjectListRoute(),
-              );
+              if (formKey.currentState!.validate()) {
+                ref.read(authProvider.notifier).login(
+                      emailController.text.trim(),
+                      passwordController.text.trim(),
+                    );
+              }
             },
             child: Container(
               width: double.infinity,
@@ -100,12 +137,21 @@ class LoginSignUpWidget extends HookConsumerWidget {
                 ),
               ),
               child: Center(
-                child: Text(
-                  _isLogin.value ? 'Login' : 'Sign Up',
-                  style: AppTextStyle.semiBoldText14.copyWith(
+                child: loginModel.maybeWhen(
+                  orElse: () {
+                    return Text(
+                      isLogin.value ? 'Login' : 'Sign Up',
+                      style: AppTextStyle.semiBoldText14.copyWith(
+                        color: Colors.white,
+                      ),
+                    ).pY(10);
+                  },
+                  loading: () => const CustomProgressIndicator(
+                    dimension: 20,
                     color: Colors.white,
-                  ),
-                ).pY(10),
+                    strokeWidth: 3.0,
+                  ).pY(10),
+                ),
               ),
             ),
           ).pB(30),
@@ -114,7 +160,7 @@ class LoginSignUpWidget extends HookConsumerWidget {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: _isLogin.value
+                    text: isLogin.value
                         ? 'Don\'t have account?'
                         : 'Already have account?',
                     style: AppTextStyle.semiBoldText12.copyWith(
@@ -122,11 +168,13 @@ class LoginSignUpWidget extends HookConsumerWidget {
                     ),
                   ),
                   TextSpan(
-                    text: _isLogin.value ? ' Sign Up' : ' Login',
-                    style: AppTextStyle.semiBoldText12,
+                    text: isLogin.value ? ' Sign Up' : ' Login',
+                    style: AppTextStyle.semiBoldText12.copyWith(
+                      color: Colors.black,
+                    ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        _isLogin.value = !_isLogin.value;
+                        isLogin.value = !isLogin.value;
                       },
                   ),
                 ],
@@ -134,7 +182,7 @@ class LoginSignUpWidget extends HookConsumerWidget {
             ).pB(10),
           ),
         ],
-      ).pXY(60, 30),
+      ).pXY(contentPadding, 30),
     );
   }
 }
