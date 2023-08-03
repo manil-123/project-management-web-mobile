@@ -15,6 +15,7 @@ Future<T> runApiZoned<T>({
     final response = await fn();
     return response;
   } catch (e, stk) {
+    log(e.toString());
     if (kDebugMode) {
       log(
         '$fn: An error occurred in runApiZoned',
