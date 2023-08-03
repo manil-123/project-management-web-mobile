@@ -24,9 +24,11 @@ class AppRouter extends _i3.RootStackRouter {
   @override
   final Map<String, _i3.PageFactory> pagesMap = {
     AuthRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<AuthRouteArgs>(orElse: () => const AuthRouteArgs());
       return _i3.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.AuthScreen(),
+        child: _i1.AuthScreen(key: args.key),
       );
     },
     ProjectListRoute.name: (routeData) {
@@ -58,14 +60,26 @@ class AppRouter extends _i3.RootStackRouter {
 
 /// generated route for
 /// [_i1.AuthScreen]
-class AuthRoute extends _i3.PageRouteInfo<void> {
-  const AuthRoute()
+class AuthRoute extends _i3.PageRouteInfo<AuthRouteArgs> {
+  AuthRoute({_i4.Key? key})
       : super(
           AuthRoute.name,
           path: '/login',
+          args: AuthRouteArgs(key: key),
         );
 
   static const String name = 'AuthRoute';
+}
+
+class AuthRouteArgs {
+  const AuthRouteArgs({this.key});
+
+  final _i4.Key? key;
+
+  @override
+  String toString() {
+    return 'AuthRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
