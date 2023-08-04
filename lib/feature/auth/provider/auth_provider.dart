@@ -6,7 +6,9 @@ import 'package:project_management_web_and_mobile/providers/repository_providers
 
 final authProvider = StateNotifierProvider.autoDispose<LoginNotifier,
     GenericState<AuthResponse>>(
-  (ref) => LoginNotifier(ref.watch(authRepositoryProvider)),
+  (ref) => LoginNotifier(
+    ref.watch(authRepositoryProvider),
+  ),
 );
 
 class LoginNotifier extends StateNotifier<GenericState<AuthResponse>> {
@@ -21,6 +23,26 @@ class LoginNotifier extends StateNotifier<GenericState<AuthResponse>> {
   Future<void> login(String username, String password) async {
     state = const GenericState.loading();
     final result = await _authRepository.login(
+      username,
+      password,
+    );
+    result.fold(
+      (failure) {
+        state = GenericState.error(
+          failure.errorMessage,
+        );
+      },
+      (loginModel) async {
+        state = GenericState.success(
+          loginModel,
+        );
+      },
+    );
+  }
+
+  Future<void> register(String username, String password) async {
+    state = const GenericState.loading();
+    final result = await _authRepository.register(
       username,
       password,
     );

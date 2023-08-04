@@ -21,7 +21,7 @@ class AuthRepositoryImpl implements AuthRepository {
     return runApiZoned(
       fn: () async {
         final response =
-            await _restClient.login(username: username, password: password);
+            await _restClient.register(username: username, password: password);
         log("response $response");
         if (response.success == true) {
           return Right(response);
