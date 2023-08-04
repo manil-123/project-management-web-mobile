@@ -9,6 +9,12 @@ part 'rest_client.g.dart';
 abstract class RestClient {
   factory RestClient(Dio dio) = _RestClient;
 
+  @POST(ApiEndpoints.registerUrl)
+  Future<AuthResponse> register({
+    @Field('username') required String username,
+    @Field('password') required String password,
+  });
+
   @POST(ApiEndpoints.loginUrl)
   Future<AuthResponse> login({
     @Field('username') required String username,
