@@ -35,10 +35,17 @@ class LoginSignUpWidget extends HookConsumerWidget {
     ref.listen<GenericState<AuthResponse>>(authProvider, (previous, next) {
       next.whenOrNull(
         success: (loginModel) {
-          context.router.pushAndPopUntil(
-            const ProjectListRoute(),
-            predicate: (route) => false,
-          );
+          if (isLogin.value) {
+            context.router.pushAndPopUntil(
+              const ProjectListRoute(),
+              predicate: (route) => false,
+            );
+          } else {
+            isLogin.value = !isLogin.value;
+            emailController.clear();
+            passwordController.clear();
+          }
+          showInfo(context, loginModel.message);
         },
         error: (message) {
           showErrorInfo(context, message);
@@ -118,10 +125,17 @@ class LoginSignUpWidget extends HookConsumerWidget {
           InkWell(
             onTap: () {
               if (formKey.currentState!.validate()) {
-                ref.read(authProvider.notifier).login(
-                      emailController.text.trim(),
-                      passwordController.text.trim(),
-                    );
+                if (isLogin.value) {
+                  ref.read(authProvider.notifier).login(
+                        emailController.text.trim(),
+                        passwordController.text.trim(),
+                      );
+                } else {
+                  ref.read(authProvider.notifier).register(
+                        emailController.text.trim(),
+                        passwordController.text.trim(),
+                      );
+                }
               } else {
                 shakeButton.value = true;
                 Future.delayed(const Duration(milliseconds: 1500), () {

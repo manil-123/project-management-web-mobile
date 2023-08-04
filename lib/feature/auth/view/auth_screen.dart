@@ -103,12 +103,14 @@ class AuthScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      height: double.infinity,
+                      height: MediaQuery.sizeOf(context).height * 0.8,
                       width: MediaQuery.sizeOf(context).width * 0.4,
                       color: Colors.white,
-                      child: LoginSignUpWidget(
-                        formKey: _formKey,
-                        contentPadding: 60,
+                      child: SingleChildScrollView(
+                        child: LoginSignUpWidget(
+                          formKey: _formKey,
+                          contentPadding: 60,
+                        ),
                       ),
                     ),
                   ],
