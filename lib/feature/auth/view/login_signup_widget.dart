@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
@@ -45,7 +44,7 @@ class LoginSignUpWidget extends HookConsumerWidget {
                 .read(loginDaoProvider)
                 .saveLoginInfo(true)
                 .then((value) => context.router.pushAndPopUntil(
-                      const LandingRouter(),
+                      const DashboardRouter(),
                       predicate: (route) => false,
                     ));
           } else {

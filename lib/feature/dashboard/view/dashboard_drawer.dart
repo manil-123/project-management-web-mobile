@@ -45,11 +45,11 @@ class DashboardDrawer extends HookConsumerWidget {
           ).pX(20).pB(20),
           DrawerItem(
             icon: Icons.dashboard,
-            title: 'Dashboard',
+            title: 'Projects',
             onTap: () {
               final router = contentRouter.currentState!.controller;
               router?.replace(
-                const DashboardRoute(),
+                const ProjectsRoute(),
               );
               ref.read(selectedScreenProvider.notifier).state = 0;
             },

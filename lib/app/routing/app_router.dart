@@ -3,8 +3,8 @@ import 'package:auto_route/empty_router_widgets.dart';
 import 'package:project_management_web_and_mobile/app/routing/route_guard.dart';
 import 'package:project_management_web_and_mobile/app/routing/routes.dart';
 import 'package:project_management_web_and_mobile/feature/auth/view/auth_screen.dart';
-import 'package:project_management_web_and_mobile/feature/dashboard/view/landing_screen.dart';
-import 'package:project_management_web_and_mobile/feature/settings/view/dashboard_screen.dart';
+import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboard_screen.dart';
+import 'package:project_management_web_and_mobile/feature/settings/view/projects_screen.dart';
 import 'package:project_management_web_and_mobile/feature/settings/view/settings_screen.dart';
 import 'package:project_management_web_and_mobile/feature/settings/view/tasks_screen.dart';
 
@@ -19,25 +19,28 @@ import 'package:project_management_web_and_mobile/feature/settings/view/tasks_sc
     ),
     AutoRoute(
       path: '/',
-      name: 'LandingRouter',
+      name: 'DashboardRouter',
       page: EmptyRouterPage,
       guards: [RouteGuard],
       children: [
         AutoRoute(
           path: '',
-          page: LandingScreen,
+          page: DashboardScreen,
           children: [
             AutoRoute(
-              path: Routes.dashboardRoute,
-              page: DashboardScreen,
+              path: Routes.projectsRoute,
+              page: ProjectsScreen,
+              maintainState: false,
             ),
             AutoRoute(
               path: Routes.tasksRoute,
               page: TasksScreen,
+              maintainState: false,
             ),
             AutoRoute(
               path: Routes.settingsRoute,
               page: SettingsScreen,
+              maintainState: false,
             ),
           ],
         ),

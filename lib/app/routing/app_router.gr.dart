@@ -16,8 +16,8 @@ import 'package:auto_route/empty_router_widgets.dart' as _i2;
 import 'package:flutter/material.dart' as _i8;
 
 import '../../feature/auth/view/auth_screen.dart' as _i1;
-import '../../feature/dashboard/view/landing_screen.dart' as _i3;
-import '../../feature/settings/view/dashboard_screen.dart' as _i4;
+import '../../feature/dashboard/view/dashboard_screen.dart' as _i3;
+import '../../feature/settings/view/projects_screen.dart' as _i4;
 import '../../feature/settings/view/settings_screen.dart' as _i6;
 import '../../feature/settings/view/tasks_screen.dart' as _i5;
 import 'route_guard.dart' as _i9;
@@ -41,34 +41,37 @@ class AppRouter extends _i7.RootStackRouter {
         maintainState: false,
       );
     },
-    LandingRouter.name: (routeData) {
+    DashboardRouter.name: (routeData) {
       return _i7.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i2.EmptyRouterPage(),
       );
     },
-    LandingRoute.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i3.LandingScreen(),
-      );
-    },
     DashboardRoute.name: (routeData) {
       return _i7.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i4.DashboardScreen(),
+        child: const _i3.DashboardScreen(),
+      );
+    },
+    ProjectsRoute.name: (routeData) {
+      return _i7.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i4.ProjectsScreen(),
+        maintainState: false,
       );
     },
     TasksRoute.name: (routeData) {
       return _i7.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i5.TasksScreen(),
+        maintainState: false,
       );
     },
     SettingsRoute.name: (routeData) {
       return _i7.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i6.SettingsScreen(),
+        maintainState: false,
       );
     },
   };
@@ -80,29 +83,29 @@ class AppRouter extends _i7.RootStackRouter {
           path: '/login',
         ),
         _i7.RouteConfig(
-          LandingRouter.name,
+          DashboardRouter.name,
           path: '/',
           guards: [routeGuard],
           children: [
             _i7.RouteConfig(
-              LandingRoute.name,
+              DashboardRoute.name,
               path: '',
-              parent: LandingRouter.name,
+              parent: DashboardRouter.name,
               children: [
                 _i7.RouteConfig(
-                  DashboardRoute.name,
-                  path: 'dashboard',
-                  parent: LandingRoute.name,
+                  ProjectsRoute.name,
+                  path: 'projects',
+                  parent: DashboardRoute.name,
                 ),
                 _i7.RouteConfig(
                   TasksRoute.name,
                   path: 'tasks',
-                  parent: LandingRoute.name,
+                  parent: DashboardRoute.name,
                 ),
                 _i7.RouteConfig(
                   SettingsRoute.name,
                   path: 'settings',
-                  parent: LandingRoute.name,
+                  parent: DashboardRoute.name,
                 ),
               ],
             )
@@ -137,40 +140,40 @@ class AuthRouteArgs {
 
 /// generated route for
 /// [_i2.EmptyRouterPage]
-class LandingRouter extends _i7.PageRouteInfo<void> {
-  const LandingRouter({List<_i7.PageRouteInfo>? children})
+class DashboardRouter extends _i7.PageRouteInfo<void> {
+  const DashboardRouter({List<_i7.PageRouteInfo>? children})
       : super(
-          LandingRouter.name,
+          DashboardRouter.name,
           path: '/',
           initialChildren: children,
         );
 
-  static const String name = 'LandingRouter';
+  static const String name = 'DashboardRouter';
 }
 
 /// generated route for
-/// [_i3.LandingScreen]
-class LandingRoute extends _i7.PageRouteInfo<void> {
-  const LandingRoute({List<_i7.PageRouteInfo>? children})
+/// [_i3.DashboardScreen]
+class DashboardRoute extends _i7.PageRouteInfo<void> {
+  const DashboardRoute({List<_i7.PageRouteInfo>? children})
       : super(
-          LandingRoute.name,
+          DashboardRoute.name,
           path: '',
           initialChildren: children,
         );
 
-  static const String name = 'LandingRoute';
+  static const String name = 'DashboardRoute';
 }
 
 /// generated route for
-/// [_i4.DashboardScreen]
-class DashboardRoute extends _i7.PageRouteInfo<void> {
-  const DashboardRoute()
+/// [_i4.ProjectsScreen]
+class ProjectsRoute extends _i7.PageRouteInfo<void> {
+  const ProjectsRoute()
       : super(
-          DashboardRoute.name,
-          path: 'dashboard',
+          ProjectsRoute.name,
+          path: 'projects',
         );
 
-  static const String name = 'DashboardRoute';
+  static const String name = 'ProjectsRoute';
 }
 
 /// generated route for

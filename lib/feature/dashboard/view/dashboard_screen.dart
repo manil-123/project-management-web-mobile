@@ -2,14 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboard_drawer.dart';
 
-class LandingScreen extends StatefulWidget {
-  const LandingScreen({super.key});
+class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({super.key});
 
   @override
-  State<LandingScreen> createState() => _LandingScreenState();
+  State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
-class _LandingScreenState extends State<LandingScreen> {
+class _DashboardScreenState extends State<DashboardScreen> {
   final innerRouterKey = GlobalKey<AutoRouterState>();
 
   @override
