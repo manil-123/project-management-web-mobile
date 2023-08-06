@@ -34,9 +34,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
             selectedScreenIndex == -1
                 ? const Flexible(
                     flex: 5,
-                    child: Center(
-                      child: DashboardBody(),
-                    ),
+                    child: DashboardBody(),
                   )
                 : Flexible(
                     flex: 5,

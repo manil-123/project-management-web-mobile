@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:project_management_web_and_mobile/app/constants/app_colors.dart';
 import 'package:project_management_web_and_mobile/app/state/generic_state.dart';
+import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/model/dashboard_info.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/provider/dashboard_provider.dart';
+import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
 
 class DashboardBody extends ConsumerWidget {
   const DashboardBody({super.key});
@@ -18,14 +21,85 @@ class DashboardBody extends ConsumerWidget {
               child: CircularProgressIndicator(),
             ),
         success: (dashboardInfo) {
-          return Text(
-            dashboardInfo.totalProjects.toString(),
-          );
+          return DashboardRow(
+            dashboardInfo: dashboardInfo,
+          ).pXY(20, 20);
         },
         error: (error) {
           return Center(
             child: Text(error),
           );
         });
+  }
+}
+
+class DashboardRow extends StatelessWidget {
+  const DashboardRow({
+    super.key,
+    required this.dashboardInfo,
+  });
+  final DashboardInfo dashboardInfo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        DashboardInfoWidget(
+          title: 'Total Projects',
+          value: dashboardInfo.totalProjects.toString(),
+        ),
+        DashboardInfoWidget(
+          title: 'Total Sprints',
+          value: dashboardInfo.totalSprints.toString(),
+        ),
+        DashboardInfoWidget(
+          title: 'Total Tickets',
+          value: dashboardInfo.totalTickets.toString(),
+        ),
+        DashboardInfoWidget(
+          title: 'Total Members',
+          value: dashboardInfo.totalMembers.toString(),
+        ),
+      ],
+    );
+  }
+}
+
+class DashboardInfoWidget extends StatelessWidget {
+  const DashboardInfoWidget(
+      {super.key, required this.title, required this.value});
+  final String title;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxHeight: 100, minHeight: 100),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0),
+          color: AppColors.kWebLightColor,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: AppTextStyle.boldText20.copyWith(
+                color: Colors.white,
+              ),
+            ),
+            Text(
+              value,
+              style: AppTextStyle.boldText20.copyWith(
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ).pXY(20, 20),
+      ),
+    );
   }
 }
