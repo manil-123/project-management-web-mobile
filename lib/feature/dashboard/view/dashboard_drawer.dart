@@ -7,6 +7,7 @@ import 'package:project_management_web_and_mobile/app/constants/app_colors.dart'
 import 'package:project_management_web_and_mobile/app/routing/app_router.gr.dart';
 import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
 import 'package:project_management_web_and_mobile/feature/auth/provider/auth_provider.dart';
+import 'package:project_management_web_and_mobile/main.dart';
 import 'package:project_management_web_and_mobile/providers/dependency_providers.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
 
@@ -123,6 +124,7 @@ class DashboardDrawer extends HookConsumerWidget {
               onPressed: () {
                 ref.read(authProvider.notifier).logOut();
                 ref.invalidate(selectedScreenProvider);
+                MyApp.of(context).authService.authenticated = false;
                 context.router.pushAndPopUntil(
                   AuthRoute(),
                   predicate: (route) => false,

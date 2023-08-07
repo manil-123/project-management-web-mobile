@@ -20,10 +20,15 @@ import '../../feature/dashboard/view/landing_screen.dart' as _i3;
 import '../../feature/settings/view/dashboard_screen.dart' as _i4;
 import '../../feature/settings/view/settings_screen.dart' as _i6;
 import '../../feature/settings/view/tasks_screen.dart' as _i5;
+import 'route_guard.dart' as _i9;
 
 class AppRouter extends _i7.RootStackRouter {
-  AppRouter([_i8.GlobalKey<_i8.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+  AppRouter({
+    _i8.GlobalKey<_i8.NavigatorState>? navigatorKey,
+    required this.routeGuard,
+  }) : super(navigatorKey);
+
+  final _i9.RouteGuard routeGuard;
 
   @override
   final Map<String, _i7.PageFactory> pagesMap = {
@@ -33,6 +38,7 @@ class AppRouter extends _i7.RootStackRouter {
       return _i7.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i1.AuthScreen(key: args.key),
+        maintainState: false,
       );
     },
     LandingRouter.name: (routeData) {
@@ -70,12 +76,19 @@ class AppRouter extends _i7.RootStackRouter {
   @override
   List<_i7.RouteConfig> get routes => [
         _i7.RouteConfig(
+          '/#redirect',
+          path: '/',
+          redirectTo: '/login',
+          fullMatch: true,
+        ),
+        _i7.RouteConfig(
           AuthRoute.name,
           path: '/login',
         ),
         _i7.RouteConfig(
           LandingRouter.name,
-          path: '/',
+          path: '/landing',
+          guards: [routeGuard],
           children: [
             _i7.RouteConfig(
               LandingRoute.name,
@@ -134,7 +147,7 @@ class LandingRouter extends _i7.PageRouteInfo<void> {
   const LandingRouter({List<_i7.PageRouteInfo>? children})
       : super(
           LandingRouter.name,
-          path: '/',
+          path: '/landing',
           initialChildren: children,
         );
 

@@ -11,6 +11,7 @@ import 'package:project_management_web_and_mobile/app/widgets/custom_text_form_f
 import 'package:project_management_web_and_mobile/app/widgets/message_widget.dart';
 import 'package:project_management_web_and_mobile/feature/auth/model/auth_response.dart';
 import 'package:project_management_web_and_mobile/feature/auth/provider/auth_provider.dart';
+import 'package:project_management_web_and_mobile/main.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/shake_extension.dart';
 
@@ -130,6 +131,7 @@ class LoginSignUpWidget extends HookConsumerWidget {
                         emailController.text.trim(),
                         passwordController.text.trim(),
                       );
+                  MyApp.of(context).authService.authenticated = true;
                 } else {
                   ref.read(authProvider.notifier).register(
                         emailController.text.trim(),
