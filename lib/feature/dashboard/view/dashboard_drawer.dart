@@ -12,8 +12,13 @@ import 'package:project_management_web_and_mobile/utils/extensions/padding_exten
 
 final selectedScreenProvider = StateProvider<int>((ref) => 0);
 
-class ProjectDrawer extends HookConsumerWidget {
-  const ProjectDrawer({super.key});
+class DashboardDrawer extends HookConsumerWidget {
+  const DashboardDrawer({
+    super.key,
+    required this.contentRouter,
+  });
+
+  final GlobalKey<AutoRouterState> contentRouter;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,6 +47,10 @@ class ProjectDrawer extends HookConsumerWidget {
             icon: Icons.dashboard,
             title: 'Dashboard',
             onTap: () {
+              final router = contentRouter.currentState!.controller;
+              router?.replace(
+                const DashboardRoute(),
+              );
               ref.read(selectedScreenProvider.notifier).state = 0;
             },
             isSelected: selectedScreenIndex == 0,
@@ -50,6 +59,10 @@ class ProjectDrawer extends HookConsumerWidget {
             icon: Icons.task,
             title: 'Tasks',
             onTap: () {
+              final router = contentRouter.currentState?.controller;
+              router?.replace(
+                const TasksRoute(),
+              );
               ref.read(selectedScreenProvider.notifier).state = 1;
             },
             isSelected: selectedScreenIndex == 1,
@@ -58,6 +71,10 @@ class ProjectDrawer extends HookConsumerWidget {
             icon: Icons.settings,
             title: 'Settings',
             onTap: () {
+              final router = contentRouter.currentState?.controller;
+              router?.replace(
+                const SettingsRoute(),
+              );
               ref.read(selectedScreenProvider.notifier).state = 2;
             },
             isSelected: selectedScreenIndex == 2,

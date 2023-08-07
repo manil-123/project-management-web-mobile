@@ -37,7 +37,7 @@ class LoginSignUpWidget extends HookConsumerWidget {
         success: (loginModel) {
           if (isLogin.value) {
             context.router.pushAndPopUntil(
-              const ProjectListRoute(),
+              const LandingRouter(),
               predicate: (route) => false,
             );
           } else {
