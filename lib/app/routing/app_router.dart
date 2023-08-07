@@ -1,7 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/empty_router_widgets.dart';
 import 'package:project_management_web_and_mobile/app/routing/routes.dart';
 import 'package:project_management_web_and_mobile/feature/auth/view/auth_screen.dart';
-import 'package:project_management_web_and_mobile/feature/project/view/project_list_screen.dart';
+import 'package:project_management_web_and_mobile/feature/dashboard/view/landing_screen.dart';
+import 'package:project_management_web_and_mobile/feature/settings/view/dashboard_screen.dart';
+import 'package:project_management_web_and_mobile/feature/settings/view/settings_screen.dart';
+import 'package:project_management_web_and_mobile/feature/settings/view/tasks_screen.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Screen,Route',
@@ -12,8 +16,29 @@ import 'package:project_management_web_and_mobile/feature/project/view/project_l
       initial: true,
     ),
     AutoRoute(
-      path: Routes.projectsRoute,
-      page: ProjectListScreen,
+      path: '/',
+      name: 'LandingRouter',
+      page: EmptyRouterPage,
+      children: [
+        AutoRoute(
+          path: '',
+          page: LandingScreen,
+          children: [
+            AutoRoute(
+              path: Routes.dashboardRoute,
+              page: DashboardScreen,
+            ),
+            AutoRoute(
+              path: Routes.tasksRoute,
+              page: TasksScreen,
+            ),
+            AutoRoute(
+              path: Routes.settingsRoute,
+              page: SettingsScreen,
+            ),
+          ],
+        ),
+      ],
     ),
   ],
 )
