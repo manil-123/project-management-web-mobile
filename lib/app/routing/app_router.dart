@@ -18,7 +18,7 @@ import 'package:project_management_web_and_mobile/feature/settings/view/tasks_sc
       maintainState: false,
     ),
     AutoRoute(
-      path: '/landing',
+      path: '/',
       name: 'LandingRouter',
       page: EmptyRouterPage,
       guards: [RouteGuard],

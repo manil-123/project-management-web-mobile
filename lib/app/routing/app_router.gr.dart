@@ -76,18 +76,12 @@ class AppRouter extends _i7.RootStackRouter {
   @override
   List<_i7.RouteConfig> get routes => [
         _i7.RouteConfig(
-          '/#redirect',
-          path: '/',
-          redirectTo: '/login',
-          fullMatch: true,
-        ),
-        _i7.RouteConfig(
           AuthRoute.name,
           path: '/login',
         ),
         _i7.RouteConfig(
           LandingRouter.name,
-          path: '/landing',
+          path: '/',
           guards: [routeGuard],
           children: [
             _i7.RouteConfig(
@@ -147,7 +141,7 @@ class LandingRouter extends _i7.PageRouteInfo<void> {
   const LandingRouter({List<_i7.PageRouteInfo>? children})
       : super(
           LandingRouter.name,
-          path: '/landing',
+          path: '/',
           initialChildren: children,
         );
 

@@ -6,25 +6,18 @@ import 'app/routing/app_router.gr.dart';
 
 void main() {
   runApp(
-    const ProviderScope(
+    ProviderScope(
       child: MyApp(),
     ),
   );
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-  static MyAppState of(BuildContext context) =>
-      context.findAncestorStateOfType<MyAppState>()!;
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => MyAppState();
-}
-
-class MyAppState extends State<MyApp> {
-  final authService = AuthService();
+  final container = ProviderContainer();
   late final _appRouter = AppRouter(
-    routeGuard: RouteGuard(authService),
+    routeGuard: RouteGuard(container.read(authServiceProvider)),
   );
 
   // This widget is the root of your application.
