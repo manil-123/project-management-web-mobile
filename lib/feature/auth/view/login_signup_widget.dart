@@ -11,13 +11,16 @@ import 'package:project_management_web_and_mobile/app/widgets/custom_text_form_f
 import 'package:project_management_web_and_mobile/app/widgets/message_widget.dart';
 import 'package:project_management_web_and_mobile/feature/auth/model/auth_response.dart';
 import 'package:project_management_web_and_mobile/feature/auth/provider/auth_provider.dart';
-import 'package:project_management_web_and_mobile/main.dart';
+import 'package:project_management_web_and_mobile/providers/dependency_providers.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/shake_extension.dart';
 
 class LoginSignUpWidget extends HookConsumerWidget {
-  const LoginSignUpWidget(
-      {required this.formKey, required this.contentPadding, super.key});
+  const LoginSignUpWidget({
+    required this.formKey,
+    required this.contentPadding,
+    super.key,
+  });
 
   final GlobalKey<FormState> formKey;
   final double contentPadding;
@@ -41,6 +44,7 @@ class LoginSignUpWidget extends HookConsumerWidget {
               const LandingRouter(),
               predicate: (route) => false,
             );
+            ref.read(loginDaoProvider).saveLoginInfo(true);
           } else {
             isLogin.value = !isLogin.value;
             emailController.clear();
@@ -131,7 +135,6 @@ class LoginSignUpWidget extends HookConsumerWidget {
                         emailController.text.trim(),
                         passwordController.text.trim(),
                       );
-                  MyApp.of(context).authService.authenticated = true;
                 } else {
                   ref.read(authProvider.notifier).register(
                         emailController.text.trim(),
