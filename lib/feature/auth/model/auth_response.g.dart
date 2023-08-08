@@ -9,7 +9,9 @@ part of 'auth_response.dart';
 _$_AuthResponse _$$_AuthResponseFromJson(Map<String, dynamic> json) =>
     _$_AuthResponse(
       success: json['success'] as bool,
-      data: UserModel.fromJson(json['data'] as Map<String, dynamic>),
+      data: json['data'] == null
+          ? null
+          : UserModel.fromJson(json['data'] as Map<String, dynamic>),
       message: json['message'] as String,
     );
 

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
@@ -38,19 +39,23 @@ class LoginSignUpWidget extends HookConsumerWidget {
 
     ref.listen<GenericState<AuthResponse>>(authProvider, (previous, next) {
       next.whenOrNull(
-        success: (loginModel) {
+        success: (loginModel) async {
           if (isLogin.value) {
-            context.router.pushAndPopUntil(
-              const LandingRouter(),
-              predicate: (route) => false,
-            );
-            ref.read(loginDaoProvider).saveLoginInfo(true);
+            await ref
+                .read(loginDaoProvider)
+                .saveLoginInfo(true)
+                .then((value) => context.router.pushAndPopUntil(
+                      const LandingRouter(),
+                      predicate: (route) => false,
+                    ));
           } else {
             isLogin.value = !isLogin.value;
             emailController.clear();
             passwordController.clear();
           }
-          showInfo(context, loginModel.message);
+          Future.delayed(Duration.zero, () {
+            showInfo(context, loginModel.message);
+          });
         },
         error: (message) {
           showErrorInfo(context, message);

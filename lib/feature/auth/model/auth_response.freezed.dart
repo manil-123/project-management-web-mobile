@@ -21,7 +21,7 @@ AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AuthResponse {
   bool get success => throw _privateConstructorUsedError;
-  UserModel get data => throw _privateConstructorUsedError;
+  UserModel? get data => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,9 +36,9 @@ abstract class $AuthResponseCopyWith<$Res> {
           AuthResponse value, $Res Function(AuthResponse) then) =
       _$AuthResponseCopyWithImpl<$Res, AuthResponse>;
   @useResult
-  $Res call({bool success, UserModel data, String message});
+  $Res call({bool success, UserModel? data, String message});
 
-  $UserModelCopyWith<$Res> get data;
+  $UserModelCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -55,7 +55,7 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
   @override
   $Res call({
     Object? success = null,
-    Object? data = null,
+    Object? data = freezed,
     Object? message = null,
   }) {
     return _then(_value.copyWith(
@@ -63,10 +63,10 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as bool,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+              as UserModel?,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -76,8 +76,12 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
 
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get data {
-    return $UserModelCopyWith<$Res>(_value.data, (value) {
+  $UserModelCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -91,10 +95,10 @@ abstract class _$$_AuthResponseCopyWith<$Res>
       __$$_AuthResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, UserModel data, String message});
+  $Res call({bool success, UserModel? data, String message});
 
   @override
-  $UserModelCopyWith<$Res> get data;
+  $UserModelCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -109,7 +113,7 @@ class __$$_AuthResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? success = null,
-    Object? data = null,
+    Object? data = freezed,
     Object? message = null,
   }) {
     return _then(_$_AuthResponse(
@@ -117,10 +121,10 @@ class __$$_AuthResponseCopyWithImpl<$Res>
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as bool,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+              as UserModel?,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -141,7 +145,7 @@ class _$_AuthResponse implements _AuthResponse {
   @override
   final bool success;
   @override
-  final UserModel data;
+  final UserModel? data;
   @override
   final String message;
 
@@ -181,7 +185,7 @@ class _$_AuthResponse implements _AuthResponse {
 abstract class _AuthResponse implements AuthResponse {
   const factory _AuthResponse(
       {required final bool success,
-      required final UserModel data,
+      required final UserModel? data,
       required final String message}) = _$_AuthResponse;
 
   factory _AuthResponse.fromJson(Map<String, dynamic> json) =
@@ -190,7 +194,7 @@ abstract class _AuthResponse implements AuthResponse {
   @override
   bool get success;
   @override
-  UserModel get data;
+  UserModel? get data;
   @override
   String get message;
   @override

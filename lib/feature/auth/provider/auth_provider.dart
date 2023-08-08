@@ -38,7 +38,7 @@ class LoginNotifier extends StateNotifier<GenericState<AuthResponse>> {
         );
       },
       (loginModel) async {
-        _userDetailsDao.saveUserDetails(loginModel.data);
+        _userDetailsDao.saveUserDetails(loginModel.data!);
         state = GenericState.success(
           loginModel,
         );

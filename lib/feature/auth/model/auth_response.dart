@@ -7,7 +7,7 @@ part 'auth_response.g.dart';
 class AuthResponse with _$AuthResponse {
   const factory AuthResponse({
     required bool success,
-    required UserModel data,
+    required UserModel? data,
     required String message,
   }) = _AuthResponse;
 
