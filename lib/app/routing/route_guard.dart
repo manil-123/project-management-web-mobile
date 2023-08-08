@@ -5,15 +5,17 @@ import 'package:project_management_web_and_mobile/utils/service/auth_service.dar
 class RouteGuard extends AutoRedirectGuard {
   final AuthService authService;
   RouteGuard(this.authService) {
-    authService.addListener(() {
-      if (!authService.authenticated) {
+    authService.addListener(() async {
+      final authStatus = await authService.authStatus;
+      if (!authStatus) {
         reevaluate();
       }
     });
   }
   @override
-  Future<bool> canNavigate(RouteMatch route) {
-    if (authService.authenticated) {
+  Future<bool> canNavigate(RouteMatch route) async {
+    final authStatus = await authService.authStatus;
+    if (authStatus) {
       return Future.value(true);
     } else {
       return Future.value(false);
@@ -21,11 +23,14 @@ class RouteGuard extends AutoRedirectGuard {
   }
 
   @override
-  void onNavigation(NavigationResolver resolver, StackRouter router) {
-    if (authService.authenticated) {
+  void onNavigation(NavigationResolver resolver, StackRouter router) async {
+    final authStatus = await authService.authStatus;
+    if (authStatus) {
       return resolver.next(true);
     } else {
-      router.push(AuthRoute());
+      router.push(
+        AuthRoute(),
+      );
     }
   }
 }
