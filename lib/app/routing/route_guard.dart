@@ -13,12 +13,15 @@ class RouteGuard extends AutoRedirectGuard {
   }
   @override
   Future<bool> canNavigate(RouteMatch route) {
-    throw UnimplementedError();
+    if (authService.authenticated) {
+      return Future.value(true);
+    } else {
+      return Future.value(false);
+    }
   }
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
-    print(authService.authenticated);
     if (authService.authenticated) {
       return resolver.next(true);
     } else {
