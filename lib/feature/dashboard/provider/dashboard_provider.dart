@@ -5,7 +5,7 @@ import 'package:project_management_web_and_mobile/feature/dashboard/repository/d
 import 'package:project_management_web_and_mobile/providers/repository_providers.dart';
 
 final dashboardProvider = StateNotifierProvider.autoDispose<DashboardNotifier,
-    GenericState<GenericState<DashboardInfo>>>(
+    GenericState<DashboardInfo>>(
   (ref) => DashboardNotifier(
     ref.watch(dashboardRepositoryProvider),
   ),
@@ -16,11 +16,13 @@ class DashboardNotifier extends StateNotifier<GenericState<DashboardInfo>> {
     this._dashboardRepository,
   ) : super(
           const GenericState.initial(),
-        );
+        ) {
+    getDashboardInfo();
+  }
 
   final DashboardRepository _dashboardRepository;
 
-  Future<void> register() async {
+  Future<void> getDashboardInfo() async {
     state = const GenericState.loading();
     final result = await _dashboardRepository.getDashboardInfo();
     result.fold(

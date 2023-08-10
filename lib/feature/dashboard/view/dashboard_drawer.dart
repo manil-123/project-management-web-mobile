@@ -10,7 +10,7 @@ import 'package:project_management_web_and_mobile/feature/auth/provider/auth_pro
 import 'package:project_management_web_and_mobile/providers/dependency_providers.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
 
-final selectedScreenProvider = StateProvider<int>((ref) => 0);
+final selectedScreenProvider = StateProvider<int>((ref) => -1);
 
 class DashboardDrawer extends HookConsumerWidget {
   const DashboardDrawer({
@@ -47,11 +47,11 @@ class DashboardDrawer extends HookConsumerWidget {
             icon: Icons.dashboard,
             title: 'Projects',
             onTap: () {
+              ref.read(selectedScreenProvider.notifier).state = 0;
               final router = contentRouter.currentState!.controller;
               router?.replace(
                 const ProjectsRoute(),
               );
-              ref.read(selectedScreenProvider.notifier).state = 0;
             },
             isSelected: selectedScreenIndex == 0,
           ),
@@ -59,11 +59,11 @@ class DashboardDrawer extends HookConsumerWidget {
             icon: Icons.task,
             title: 'Tasks',
             onTap: () {
+              ref.read(selectedScreenProvider.notifier).state = 1;
               final router = contentRouter.currentState?.controller;
               router?.replace(
                 const TasksRoute(),
               );
-              ref.read(selectedScreenProvider.notifier).state = 1;
             },
             isSelected: selectedScreenIndex == 1,
           ),
@@ -71,11 +71,11 @@ class DashboardDrawer extends HookConsumerWidget {
             icon: Icons.settings,
             title: 'Settings',
             onTap: () {
+              ref.read(selectedScreenProvider.notifier).state = 2;
               final router = contentRouter.currentState?.controller;
               router?.replace(
                 const SettingsRoute(),
               );
-              ref.read(selectedScreenProvider.notifier).state = 2;
             },
             isSelected: selectedScreenIndex == 2,
           ),
