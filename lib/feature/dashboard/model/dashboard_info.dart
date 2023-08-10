@@ -18,10 +18,10 @@ class DashboardInfoResponse with _$DashboardInfoResponse {
 @freezed
 class DashboardInfo with _$DashboardInfo {
   const factory DashboardInfo({
-    required int totalProjects,
-    required int totalSprints,
-    required int totalMembers,
-    required int totalTickets,
+    @JsonKey(name: 'total_projects') required int totalProjects,
+    @JsonKey(name: 'total_sprints') required int totalSprints,
+    @JsonKey(name: 'total_members') required int totalMembers,
+    @JsonKey(name: 'total_tickets') required int totalTickets,
   }) = _DashboardInfo;
 
   factory DashboardInfo.fromJson(Map<String, dynamic> json) =>

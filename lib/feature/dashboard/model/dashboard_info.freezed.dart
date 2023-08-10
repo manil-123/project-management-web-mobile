@@ -208,9 +208,13 @@ DashboardInfo _$DashboardInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DashboardInfo {
+  @JsonKey(name: 'total_projects')
   int get totalProjects => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_sprints')
   int get totalSprints => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_members')
   int get totalMembers => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_tickets')
   int get totalTickets => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -226,10 +230,10 @@ abstract class $DashboardInfoCopyWith<$Res> {
       _$DashboardInfoCopyWithImpl<$Res, DashboardInfo>;
   @useResult
   $Res call(
-      {int totalProjects,
-      int totalSprints,
-      int totalMembers,
-      int totalTickets});
+      {@JsonKey(name: 'total_projects') int totalProjects,
+      @JsonKey(name: 'total_sprints') int totalSprints,
+      @JsonKey(name: 'total_members') int totalMembers,
+      @JsonKey(name: 'total_tickets') int totalTickets});
 }
 
 /// @nodoc
@@ -280,10 +284,10 @@ abstract class _$$_DashboardInfoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int totalProjects,
-      int totalSprints,
-      int totalMembers,
-      int totalTickets});
+      {@JsonKey(name: 'total_projects') int totalProjects,
+      @JsonKey(name: 'total_sprints') int totalSprints,
+      @JsonKey(name: 'total_members') int totalMembers,
+      @JsonKey(name: 'total_tickets') int totalTickets});
 }
 
 /// @nodoc
@@ -327,21 +331,25 @@ class __$$_DashboardInfoCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_DashboardInfo implements _DashboardInfo {
   const _$_DashboardInfo(
-      {required this.totalProjects,
-      required this.totalSprints,
-      required this.totalMembers,
-      required this.totalTickets});
+      {@JsonKey(name: 'total_projects') required this.totalProjects,
+      @JsonKey(name: 'total_sprints') required this.totalSprints,
+      @JsonKey(name: 'total_members') required this.totalMembers,
+      @JsonKey(name: 'total_tickets') required this.totalTickets});
 
   factory _$_DashboardInfo.fromJson(Map<String, dynamic> json) =>
       _$$_DashboardInfoFromJson(json);
 
   @override
+  @JsonKey(name: 'total_projects')
   final int totalProjects;
   @override
+  @JsonKey(name: 'total_sprints')
   final int totalSprints;
   @override
+  @JsonKey(name: 'total_members')
   final int totalMembers;
   @override
+  @JsonKey(name: 'total_tickets')
   final int totalTickets;
 
   @override
@@ -385,21 +393,26 @@ class _$_DashboardInfo implements _DashboardInfo {
 
 abstract class _DashboardInfo implements DashboardInfo {
   const factory _DashboardInfo(
-      {required final int totalProjects,
-      required final int totalSprints,
-      required final int totalMembers,
-      required final int totalTickets}) = _$_DashboardInfo;
+          {@JsonKey(name: 'total_projects') required final int totalProjects,
+          @JsonKey(name: 'total_sprints') required final int totalSprints,
+          @JsonKey(name: 'total_members') required final int totalMembers,
+          @JsonKey(name: 'total_tickets') required final int totalTickets}) =
+      _$_DashboardInfo;
 
   factory _DashboardInfo.fromJson(Map<String, dynamic> json) =
       _$_DashboardInfo.fromJson;
 
   @override
+  @JsonKey(name: 'total_projects')
   int get totalProjects;
   @override
+  @JsonKey(name: 'total_sprints')
   int get totalSprints;
   @override
+  @JsonKey(name: 'total_members')
   int get totalMembers;
   @override
+  @JsonKey(name: 'total_tickets')
   int get totalTickets;
   @override
   @JsonKey(ignore: true)

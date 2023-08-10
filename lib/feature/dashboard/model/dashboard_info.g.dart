@@ -24,16 +24,16 @@ Map<String, dynamic> _$$_DashboardInfoResponseToJson(
 
 _$_DashboardInfo _$$_DashboardInfoFromJson(Map<String, dynamic> json) =>
     _$_DashboardInfo(
-      totalProjects: json['totalProjects'] as int,
-      totalSprints: json['totalSprints'] as int,
-      totalMembers: json['totalMembers'] as int,
-      totalTickets: json['totalTickets'] as int,
+      totalProjects: json['total_projects'] as int,
+      totalSprints: json['total_sprints'] as int,
+      totalMembers: json['total_members'] as int,
+      totalTickets: json['total_tickets'] as int,
     );
 
 Map<String, dynamic> _$$_DashboardInfoToJson(_$_DashboardInfo instance) =>
     <String, dynamic>{
-      'totalProjects': instance.totalProjects,
-      'totalSprints': instance.totalSprints,
-      'totalMembers': instance.totalMembers,
-      'totalTickets': instance.totalTickets,
+      'total_projects': instance.totalProjects,
+      'total_sprints': instance.totalSprints,
+      'total_members': instance.totalMembers,
+      'total_tickets': instance.totalTickets,
     };
