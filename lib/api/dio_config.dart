@@ -19,7 +19,7 @@ final dioInstanceProvider = Provider<Dio>((ref) {
           responseHeader: true,
         ),
       InterceptorsWrapper(
-        onRequest: (options, handler) async {
+        onRequest: (options, handler) {
           options.headers['Content-Type'] = "application/json";
           return handler.next(options);
         },
