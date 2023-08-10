@@ -24,4 +24,7 @@ class ApiEndpoints {
   static const createTicketUrl = "$ticketListUrl/create";
   static const deleteTicketUrl = "$ticketListUrl/delete";
   static const updateTicketUrl = "$ticketListUrl/update";
+
+  //api for dashboard
+  static const dashboardUrl = "/dashboard";
 }
