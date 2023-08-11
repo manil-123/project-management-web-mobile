@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboard_body.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboard_drawer.dart';
 
 class DashboardScreen extends StatefulHookConsumerWidget {
@@ -16,7 +15,6 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final selectedScreenIndex = ref.watch(selectedScreenProvider);
     return Scaffold(
       body: ConstrainedBox(
         constraints: BoxConstraints(
@@ -31,17 +29,18 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                 contentRouter: innerRouterKey,
               ),
             ),
-            selectedScreenIndex == -1
-                ? const Flexible(
-                    flex: 5,
-                    child: DashboardBody(),
-                  )
-                : Flexible(
-                    flex: 5,
-                    child: AutoRouter(
-                      key: innerRouterKey,
-                    ),
-                  ),
+            // selectedScreenIndex == -1
+            //     ? const Flexible(
+            //         flex: 5,
+            //         child: DashboardBody(),
+            //       )
+            //     :
+            Flexible(
+              flex: 5,
+              child: AutoRouter(
+                key: innerRouterKey,
+              ),
+            ),
           ],
         ),
       ),

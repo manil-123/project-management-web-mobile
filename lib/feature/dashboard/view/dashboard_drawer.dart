@@ -10,7 +10,7 @@ import 'package:project_management_web_and_mobile/feature/auth/provider/auth_pro
 import 'package:project_management_web_and_mobile/providers/dependency_providers.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
 
-final selectedScreenProvider = StateProvider<int>((ref) => -1);
+final selectedScreenProvider = StateProvider<int>((ref) => 0);
 
 class DashboardDrawer extends HookConsumerWidget {
   const DashboardDrawer({
@@ -22,11 +22,12 @@ class DashboardDrawer extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedScreenIndex = ref.watch(selectedScreenProvider);
     final userDetailFuture = useMemoized(
       () => ref.read(userDaoProvider).getUserDetails(),
     );
     final userRef = useFuture(userDetailFuture);
+
+    final selectedScreenIndex = ref.watch(selectedScreenProvider);
 
     return Drawer(
       backgroundColor: Colors.black,
