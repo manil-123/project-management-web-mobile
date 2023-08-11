@@ -51,6 +51,8 @@ dependencies:
   pretty_dio_logger: ^1.1.1
   responsive_builder: ^0.7.0
   retrofit: ">=3.0.0 <4.0.0"
+  # remove hash from url
+  url_strategy: ^0.2.0
 
 dev_dependencies:
   flutter_test:

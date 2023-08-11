@@ -7,9 +7,8 @@ import 'package:project_management_web_and_mobile/api/api_config.dart';
 final dioInstanceProvider = Provider<Dio>((ref) {
   return Dio()
     ..options.baseUrl = ApiConfig.apiBaseUrlWeb
-// ..options.followRedirects = false
+    ..options.followRedirects = false
     ..options.validateStatus = ((status) => status! < 401)
-    ..options.connectTimeout = 20000
     ..options.receiveTimeout = 20000
     ..interceptors.addAll([
       if (kDebugMode)
