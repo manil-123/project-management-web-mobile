@@ -2,11 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:project_management_web_and_mobile/app/routing/app_router.gr.dart';
+import 'package:project_management_web_and_mobile/app/state/generic_state.dart';
 import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
 import 'package:project_management_web_and_mobile/app/widgets/custom_progress_indicator.dart';
+import 'package:project_management_web_and_mobile/app/widgets/message_widget.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboard_drawer.dart';
+import 'package:project_management_web_and_mobile/feature/project/model/delete_project/delete_project_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/model/project_list/project_list_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/provider/project_provider.dart';
+import 'package:project_management_web_and_mobile/feature/project/view/widgets/delete_project_alert_dialog.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -60,9 +64,13 @@ class _ProjectsScreenState extends ConsumerState<ProjectsScreen> {
           }
         },
         error: (error) {
-          return Center(
-            child: Text(error),
-          );
+          if (projectListModel is List<ProjectModel>) {
+            return Center(
+              child: Text(error),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
         },
       ),
     );
@@ -88,7 +96,7 @@ class _ProjectsScreenState extends ConsumerState<ProjectsScreen> {
                     constraints: BoxConstraints(
                       minHeight: 80,
                       maxWidth: MediaQuery.sizeOf(context).width * 0.2,
-                      minWidth: 100,
+                      minWidth: MediaQuery.sizeOf(context).width * 0.2,
                     ),
                     child: Container(
                       decoration: BoxDecoration(
@@ -118,6 +126,13 @@ class _ProjectsScreenState extends ConsumerState<ProjectsScreen> {
                             'Total Tickets',
                             '${calculateTotalTickets(project.sprints)}',
                           ),
+                          IconButton(
+                            onPressed: () => _deleteProjectAlertDialog(project),
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
+                          ).pT(12),
                         ],
                       ),
                     ).pR(30).pT(30),
@@ -165,6 +180,18 @@ class _ProjectsScreenState extends ConsumerState<ProjectsScreen> {
       barrierDismissible: false,
       builder: (_) {
         return const CreateProjectAlertDialog();
+      },
+    );
+  }
+
+  Future<void> _deleteProjectAlertDialog(ProjectModel projectModel) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) {
+        return DeleteProjectAlertDialog(
+          projectModel: projectModel,
+        );
       },
     );
   }
