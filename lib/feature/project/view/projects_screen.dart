@@ -5,6 +5,7 @@ import 'package:project_management_web_and_mobile/app/routing/app_router.gr.dart
 import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
 import 'package:project_management_web_and_mobile/app/widgets/custom_progress_indicator.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboard_drawer.dart';
+import 'package:project_management_web_and_mobile/feature/project/model/project_list_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/provider/project_provider.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -46,8 +47,12 @@ class _ProjectsScreenState extends ConsumerState<ProjectsScreen> {
       body: projectListModel.when(
         initial: () => const SizedBox(),
         loading: () => const CustomProgressIndicator(),
-        success: (projectList) {
-          return const SizedBox();
+        success: (successValue) {
+          if (successValue is List<ProjectModel>) {
+            return _projectsList(successValue);
+          } else {
+            return const SizedBox();
+          }
         },
         error: (error) {
           return Center(
@@ -55,6 +60,51 @@ class _ProjectsScreenState extends ConsumerState<ProjectsScreen> {
           );
         },
       ),
+    );
+  }
+
+  Widget _projectsList(List<ProjectModel> projectsList) {
+    return ScreenTypeLayout.builder(
+      desktop: (_) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Projects',
+            style: AppTextStyle.boldText20.copyWith(
+              fontSize: 30,
+            ),
+          ).pB(30),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (final project in projectsList)
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: 80,
+                    maxWidth: MediaQuery.sizeOf(context).width * 0.2,
+                    minWidth: 100,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.purple,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        project.projectName,
+                        style: AppTextStyle.semiBoldText16.copyWith(
+                          color: Colors.white,
+                        ),
+                      ).pXY(20, 20),
+                    ),
+                  ).pR(30),
+                ),
+            ],
+          ),
+        ],
+      ).pXY(40, 40),
+      mobile: (_) => Container(),
     );
   }
 }
