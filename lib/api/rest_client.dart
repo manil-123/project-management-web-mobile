@@ -37,7 +37,7 @@ abstract class RestClient {
     @Field('project_name') required String projectName,
   });
 
-  @POST(ApiEndpoints.deleteProjectUrl)
+  @DELETE(ApiEndpoints.deleteProjectUrl)
   Future<DeleteProjectResponse> deleteProject({
     @Field('project_id') required String projectId,
   });

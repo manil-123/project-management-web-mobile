@@ -153,7 +153,7 @@ class _RestClient implements RestClient {
     final _data = {'project_id': projectId};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<DeleteProjectResponse>(Options(
-      method: 'POST',
+      method: 'DELETE',
       headers: _headers,
       extra: _extra,
     )
