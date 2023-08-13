@@ -50,11 +50,11 @@ class TicketModel with _$TicketModel {
     required String id,
     required String title,
     required String? logs,
-    required int weight,
-    required DateTime createdAt,
-    required String closedAt,
-    required UserModel assignedTo,
-    required String ticketStatus,
+    required int? weight,
+    required String? createdAt,
+    required String? closedAt,
+    required UserModel? assignedTo,
+    required String? ticketStatus,
   }) = _TicketModel;
 
   factory TicketModel.fromJson(Map<String, dynamic> json) =>

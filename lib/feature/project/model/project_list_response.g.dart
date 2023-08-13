@@ -65,12 +65,13 @@ _$_TicketModel _$$_TicketModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       title: json['title'] as String,
       logs: json['logs'] as String?,
-      weight: json['weight'] as int,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      closedAt: json['closedAt'] as String,
-      assignedTo:
-          UserModel.fromJson(json['assignedTo'] as Map<String, dynamic>),
-      ticketStatus: json['ticketStatus'] as String,
+      weight: json['weight'] as int?,
+      createdAt: json['createdAt'] as String?,
+      closedAt: json['closedAt'] as String?,
+      assignedTo: json['assignedTo'] == null
+          ? null
+          : UserModel.fromJson(json['assignedTo'] as Map<String, dynamic>),
+      ticketStatus: json['ticketStatus'] as String?,
     );
 
 Map<String, dynamic> _$$_TicketModelToJson(_$_TicketModel instance) =>
@@ -79,7 +80,7 @@ Map<String, dynamic> _$$_TicketModelToJson(_$_TicketModel instance) =>
       'title': instance.title,
       'logs': instance.logs,
       'weight': instance.weight,
-      'createdAt': instance.createdAt.toIso8601String(),
+      'createdAt': instance.createdAt,
       'closedAt': instance.closedAt,
       'assignedTo': instance.assignedTo,
       'ticketStatus': instance.ticketStatus,

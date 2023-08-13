@@ -627,11 +627,11 @@ mixin _$TicketModel {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String? get logs => throw _privateConstructorUsedError;
-  int get weight => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  String get closedAt => throw _privateConstructorUsedError;
-  UserModel get assignedTo => throw _privateConstructorUsedError;
-  String get ticketStatus => throw _privateConstructorUsedError;
+  int? get weight => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
+  String? get closedAt => throw _privateConstructorUsedError;
+  UserModel? get assignedTo => throw _privateConstructorUsedError;
+  String? get ticketStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -649,13 +649,13 @@ abstract class $TicketModelCopyWith<$Res> {
       {String id,
       String title,
       String? logs,
-      int weight,
-      DateTime createdAt,
-      String closedAt,
-      UserModel assignedTo,
-      String ticketStatus});
+      int? weight,
+      String? createdAt,
+      String? closedAt,
+      UserModel? assignedTo,
+      String? ticketStatus});
 
-  $UserModelCopyWith<$Res> get assignedTo;
+  $UserModelCopyWith<$Res>? get assignedTo;
 }
 
 /// @nodoc
@@ -674,11 +674,11 @@ class _$TicketModelCopyWithImpl<$Res, $Val extends TicketModel>
     Object? id = null,
     Object? title = null,
     Object? logs = freezed,
-    Object? weight = null,
-    Object? createdAt = null,
-    Object? closedAt = null,
-    Object? assignedTo = null,
-    Object? ticketStatus = null,
+    Object? weight = freezed,
+    Object? createdAt = freezed,
+    Object? closedAt = freezed,
+    Object? assignedTo = freezed,
+    Object? ticketStatus = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -693,33 +693,37 @@ class _$TicketModelCopyWithImpl<$Res, $Val extends TicketModel>
           ? _value.logs
           : logs // ignore: cast_nullable_to_non_nullable
               as String?,
-      weight: null == weight
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
-              as int,
-      createdAt: null == createdAt
+              as int?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      closedAt: null == closedAt
+              as String?,
+      closedAt: freezed == closedAt
           ? _value.closedAt
           : closedAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      assignedTo: null == assignedTo
+              as String?,
+      assignedTo: freezed == assignedTo
           ? _value.assignedTo
           : assignedTo // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      ticketStatus: null == ticketStatus
+              as UserModel?,
+      ticketStatus: freezed == ticketStatus
           ? _value.ticketStatus
           : ticketStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get assignedTo {
-    return $UserModelCopyWith<$Res>(_value.assignedTo, (value) {
+  $UserModelCopyWith<$Res>? get assignedTo {
+    if (_value.assignedTo == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.assignedTo!, (value) {
       return _then(_value.copyWith(assignedTo: value) as $Val);
     });
   }
@@ -737,14 +741,14 @@ abstract class _$$_TicketModelCopyWith<$Res>
       {String id,
       String title,
       String? logs,
-      int weight,
-      DateTime createdAt,
-      String closedAt,
-      UserModel assignedTo,
-      String ticketStatus});
+      int? weight,
+      String? createdAt,
+      String? closedAt,
+      UserModel? assignedTo,
+      String? ticketStatus});
 
   @override
-  $UserModelCopyWith<$Res> get assignedTo;
+  $UserModelCopyWith<$Res>? get assignedTo;
 }
 
 /// @nodoc
@@ -761,11 +765,11 @@ class __$$_TicketModelCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? logs = freezed,
-    Object? weight = null,
-    Object? createdAt = null,
-    Object? closedAt = null,
-    Object? assignedTo = null,
-    Object? ticketStatus = null,
+    Object? weight = freezed,
+    Object? createdAt = freezed,
+    Object? closedAt = freezed,
+    Object? assignedTo = freezed,
+    Object? ticketStatus = freezed,
   }) {
     return _then(_$_TicketModel(
       id: null == id
@@ -780,26 +784,26 @@ class __$$_TicketModelCopyWithImpl<$Res>
           ? _value.logs
           : logs // ignore: cast_nullable_to_non_nullable
               as String?,
-      weight: null == weight
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
-              as int,
-      createdAt: null == createdAt
+              as int?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      closedAt: null == closedAt
+              as String?,
+      closedAt: freezed == closedAt
           ? _value.closedAt
           : closedAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      assignedTo: null == assignedTo
+              as String?,
+      assignedTo: freezed == assignedTo
           ? _value.assignedTo
           : assignedTo // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      ticketStatus: null == ticketStatus
+              as UserModel?,
+      ticketStatus: freezed == ticketStatus
           ? _value.ticketStatus
           : ticketStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -827,15 +831,15 @@ class _$_TicketModel implements _TicketModel {
   @override
   final String? logs;
   @override
-  final int weight;
+  final int? weight;
   @override
-  final DateTime createdAt;
+  final String? createdAt;
   @override
-  final String closedAt;
+  final String? closedAt;
   @override
-  final UserModel assignedTo;
+  final UserModel? assignedTo;
   @override
-  final String ticketStatus;
+  final String? ticketStatus;
 
   @override
   String toString() {
@@ -885,11 +889,11 @@ abstract class _TicketModel implements TicketModel {
       {required final String id,
       required final String title,
       required final String? logs,
-      required final int weight,
-      required final DateTime createdAt,
-      required final String closedAt,
-      required final UserModel assignedTo,
-      required final String ticketStatus}) = _$_TicketModel;
+      required final int? weight,
+      required final String? createdAt,
+      required final String? closedAt,
+      required final UserModel? assignedTo,
+      required final String? ticketStatus}) = _$_TicketModel;
 
   factory _TicketModel.fromJson(Map<String, dynamic> json) =
       _$_TicketModel.fromJson;
@@ -901,15 +905,15 @@ abstract class _TicketModel implements TicketModel {
   @override
   String? get logs;
   @override
-  int get weight;
+  int? get weight;
   @override
-  DateTime get createdAt;
+  String? get createdAt;
   @override
-  String get closedAt;
+  String? get closedAt;
   @override
-  UserModel get assignedTo;
+  UserModel? get assignedTo;
   @override
-  String get ticketStatus;
+  String? get ticketStatus;
   @override
   @JsonKey(ignore: true)
   _$$_TicketModelCopyWith<_$_TicketModel> get copyWith =>
