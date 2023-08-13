@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:project_management_web_and_mobile/app/routing/app_router.gr.dart';
 import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
+import 'package:project_management_web_and_mobile/app/widgets/custom_progress_indicator.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboard_drawer.dart';
+import 'package:project_management_web_and_mobile/feature/project/provider/project_provider.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -38,8 +40,31 @@ class _ProjectsScreenState extends ConsumerState<ProjectsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final projectListModel = ref.watch(projectProvider);
     return Scaffold(
-        floatingActionButton: ScreenTypeLayout.builder(
+      floatingActionButton: const _FloatingActionButton(),
+      body: projectListModel.when(
+        initial: () => const SizedBox(),
+        loading: () => const CustomProgressIndicator(),
+        success: (projectList) {
+          return const SizedBox();
+        },
+        error: (error) {
+          return Center(
+            child: Text(error),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _FloatingActionButton extends StatelessWidget {
+  const _FloatingActionButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return ScreenTypeLayout.builder(
       mobile: (_) {
         return FloatingActionButton(
           backgroundColor: Colors.black,
@@ -72,6 +97,6 @@ class _ProjectsScreenState extends ConsumerState<ProjectsScreen> {
           20,
         );
       },
-    ));
+    );
   }
 }

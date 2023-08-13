@@ -4,7 +4,8 @@ import 'package:project_management_web_and_mobile/feature/project/model/project_
 import 'package:project_management_web_and_mobile/feature/project/repository/project_repository.dart';
 import 'package:project_management_web_and_mobile/providers/repository_providers.dart';
 
-final projectProvider = StateNotifierProvider<ProjectNotifier, GenericState>(
+final projectProvider =
+    StateNotifierProvider.autoDispose<ProjectNotifier, GenericState>(
   (ref) => ProjectNotifier(
     ref.watch(projectRepositoryProvider),
   ),
