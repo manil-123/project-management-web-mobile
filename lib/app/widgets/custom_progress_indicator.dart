@@ -16,10 +16,10 @@ class CustomProgressIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: dimension,
-        height: dimension,
+        width: dimension ?? 40,
+        height: dimension ?? 40,
         child: CircularProgressIndicator(
-          color: color,
+          color: color ?? Colors.black,
           strokeWidth: strokeWidth ?? 4.0,
         ),
       ),

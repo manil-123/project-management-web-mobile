@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:project_management_web_and_mobile/app/constants/app_colors.dart';
 import 'package:project_management_web_and_mobile/app/state/generic_state.dart';
 import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
+import 'package:project_management_web_and_mobile/app/widgets/custom_progress_indicator.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/model/dashboard_info.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/provider/dashboard_provider.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
@@ -17,20 +18,19 @@ class DashboardBody extends ConsumerWidget {
         ref.watch<GenericState<DashboardInfo>>(dashboardProvider);
 
     return dashboardInfo.when(
-        initial: () => const SizedBox(),
-        loading: () => const Center(
-              child: CircularProgressIndicator(),
-            ),
-        success: (dashboardInfo) {
-          return DashboardRow(
-            dashboardInfo: dashboardInfo,
-          ).pXY(16, 16);
-        },
-        error: (error) {
-          return Center(
-            child: Text(error),
-          );
-        });
+      initial: () => const SizedBox(),
+      loading: () => const CustomProgressIndicator(),
+      success: (dashboardInfo) {
+        return DashboardRow(
+          dashboardInfo: dashboardInfo,
+        ).pXY(16, 16);
+      },
+      error: (error) {
+        return Center(
+          child: Text(error),
+        );
+      },
+    );
   }
 }
 
