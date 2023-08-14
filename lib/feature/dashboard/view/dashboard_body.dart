@@ -6,6 +6,7 @@ import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/model/dashboard_info.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/provider/dashboard_provider.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class DashboardBody extends ConsumerWidget {
   const DashboardBody({super.key});
@@ -23,7 +24,7 @@ class DashboardBody extends ConsumerWidget {
         success: (dashboardInfo) {
           return DashboardRow(
             dashboardInfo: dashboardInfo,
-          ).pXY(20, 20);
+          ).pXY(16, 16);
         },
         error: (error) {
           return Center(
@@ -42,41 +43,91 @@ class DashboardRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        DashboardInfoWidget(
-          title: 'Total Projects',
-          value: dashboardInfo.totalProjects.toString(),
-        ),
-        DashboardInfoWidget(
-          title: 'Total Sprints',
-          value: dashboardInfo.totalSprints.toString(),
-        ),
-        DashboardInfoWidget(
-          title: 'Total Tickets',
-          value: dashboardInfo.totalTickets.toString(),
-        ),
-        DashboardInfoWidget(
-          title: 'Total Members',
-          value: dashboardInfo.totalMembers.toString(),
-        ),
-      ],
+    return ScreenTypeLayout.builder(
+      desktop: (context) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            DashboardInfoWidget(
+              title: 'Total Projects',
+              value: dashboardInfo.totalProjects.toString(),
+            ),
+            DashboardInfoWidget(
+              title: 'Total Sprints',
+              value: dashboardInfo.totalSprints.toString(),
+            ),
+            DashboardInfoWidget(
+              title: 'Total Tickets',
+              value: dashboardInfo.totalTickets.toString(),
+            ),
+            DashboardInfoWidget(
+              title: 'Total Members',
+              value: dashboardInfo.totalMembers.toString(),
+            ),
+          ],
+        );
+      },
+      mobile: (context) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                DashboardInfoWidget(
+                  title: 'Total Projects',
+                  value: dashboardInfo.totalProjects.toString(),
+                  isMobile: true,
+                ),
+                DashboardInfoWidget(
+                  title: ' Total Sprints  ',
+                  value: dashboardInfo.totalSprints.toString(),
+                  isMobile: true,
+                ),
+              ],
+            ).pY(20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                DashboardInfoWidget(
+                  title: 'Total Tickets  ',
+                  value: dashboardInfo.totalTickets.toString(),
+                  isMobile: true,
+                ),
+                DashboardInfoWidget(
+                  title: 'Total Members',
+                  value: dashboardInfo.totalMembers.toString(),
+                  isMobile: true,
+                ),
+              ],
+            ).pY(20),
+          ],
+        );
+      },
     );
   }
 }
 
 class DashboardInfoWidget extends StatelessWidget {
-  const DashboardInfoWidget(
-      {super.key, required this.title, required this.value});
+  const DashboardInfoWidget({
+    super.key,
+    required this.title,
+    required this.value,
+    this.isMobile = false,
+  });
   final String title;
   final String value;
+  final bool? isMobile;
 
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(maxHeight: 100, minHeight: 100),
+      constraints: BoxConstraints(
+        maxHeight: 110,
+        minHeight: 100,
+        maxWidth: MediaQuery.sizeOf(context).width * 0.4,
+      ),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
@@ -87,15 +138,26 @@ class DashboardInfoWidget extends StatelessWidget {
           children: [
             Text(
               title,
-              style: AppTextStyle.boldText20.copyWith(
-                color: Colors.white,
-              ),
+              style: isMobile != null && isMobile!
+                  ? AppTextStyle.boldText14.copyWith(
+                      color: Colors.white,
+                    )
+                  : AppTextStyle.boldText20.copyWith(
+                      color: Colors.white,
+                    ),
+            ),
+            const SizedBox(
+              height: 8,
             ),
             Text(
               value,
-              style: AppTextStyle.boldText20.copyWith(
-                color: Colors.white,
-              ),
+              style: isMobile != null && isMobile!
+                  ? AppTextStyle.boldText14.copyWith(
+                      color: Colors.white,
+                    )
+                  : AppTextStyle.boldText20.copyWith(
+                      color: Colors.white,
+                    ),
             ),
           ],
         ).pXY(20, 20),

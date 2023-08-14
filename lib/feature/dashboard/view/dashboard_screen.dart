@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboard_body.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboard_drawer.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -17,6 +18,8 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final selectedScreenIndex = ref.watch(selectedScreenProvider);
+
     return ScreenTypeLayout.builder(
       mobile: (context) {
         return Scaffold(
@@ -35,9 +38,11 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
               maxWidth: MediaQuery.sizeOf(context).width,
               maxHeight: MediaQuery.sizeOf(context).height,
             ),
-            child: AutoRouter(
-              key: innerRouterKey,
-            ),
+            child: selectedScreenIndex == -1
+                ? const DashboardBody()
+                : AutoRouter(
+                    key: innerRouterKey,
+                  ),
           ),
         );
       },
@@ -56,18 +61,17 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                     contentRouter: innerRouterKey,
                   ),
                 ),
-                // selectedScreenIndex == -1
-                //     ? const Flexible(
-                //         flex: 5,
-                //         child: DashboardBody(),
-                //       )
-                //     :
-                Flexible(
-                  flex: 5,
-                  child: AutoRouter(
-                    key: innerRouterKey,
-                  ),
-                ),
+                selectedScreenIndex == -1
+                    ? const Flexible(
+                        flex: 5,
+                        child: DashboardBody(),
+                      )
+                    : Flexible(
+                        flex: 5,
+                        child: AutoRouter(
+                          key: innerRouterKey,
+                        ),
+                      ),
               ],
             ),
           ),
