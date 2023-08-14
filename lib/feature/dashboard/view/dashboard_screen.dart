@@ -61,17 +61,18 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                     contentRouter: innerRouterKey,
                   ),
                 ),
-                selectedScreenIndex == -1
-                    ? const Flexible(
-                        flex: 5,
-                        child: DashboardBody(),
-                      )
-                    : Flexible(
-                        flex: 5,
-                        child: AutoRouter(
-                          key: innerRouterKey,
-                        ),
-                      ),
+                // selectedScreenIndex == -1
+                //     ? const Flexible(
+                //         flex: 5,
+                //         child: DashboardBody(),
+                //       )
+                //     :
+                Flexible(
+                  flex: 5,
+                  child: AutoRouter(
+                    key: innerRouterKey,
+                  ),
+                ),
               ],
             ),
           ),
