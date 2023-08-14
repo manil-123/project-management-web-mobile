@@ -17,7 +17,7 @@ import 'package:flutter/material.dart' as _i8;
 
 import '../../feature/auth/view/auth_screen.dart' as _i1;
 import '../../feature/dashboard/view/dashboard_screen.dart' as _i3;
-import '../../feature/settings/view/projects_screen.dart' as _i4;
+import '../../feature/project/view/projects_screen.dart' as _i4;
 import '../../feature/settings/view/settings_screen.dart' as _i6;
 import '../../feature/settings/view/tasks_screen.dart' as _i5;
 import 'route_guard.dart' as _i9;
