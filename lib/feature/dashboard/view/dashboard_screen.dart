@@ -13,12 +13,14 @@ class DashboardScreen extends StatefulHookConsumerWidget {
 
 class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   final innerRouterKey = GlobalKey<AutoRouterState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
       mobile: (context) {
         return Scaffold(
+          key: _scaffoldKey,
           appBar: AppBar(
             title: const Text(
               'Project Management',
@@ -26,8 +28,8 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
           ),
           drawer: DashboardDrawer(
             contentRouter: innerRouterKey,
+            scaffoldKey: _scaffoldKey,
           ),
-          drawerScrimColor: Colors.white,
           body: ConstrainedBox(
             constraints: BoxConstraints(
               maxWidth: MediaQuery.sizeOf(context).width,

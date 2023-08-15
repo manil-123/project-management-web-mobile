@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,9 +17,11 @@ class DashboardDrawer extends HookConsumerWidget {
   const DashboardDrawer({
     super.key,
     required this.contentRouter,
+    this.scaffoldKey,
   });
 
   final GlobalKey<AutoRouterState> contentRouter;
+  final GlobalKey<ScaffoldState>? scaffoldKey;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,7 +42,7 @@ class DashboardDrawer extends HookConsumerWidget {
                 backgroundColor: Colors.white,
               ).pR(10),
               Text(
-                userRef.data != null ? userRef.data!.username : 'Unknown',
+                userRef.data != null ? userRef.data!.username : '',
                 style: const TextStyle(color: Colors.white),
               )
             ],
@@ -53,6 +56,7 @@ class DashboardDrawer extends HookConsumerWidget {
               router?.replace(
                 const ProjectsRoute(),
               );
+              toggleDrawer();
             },
             isSelected: selectedScreenIndex == 0,
           ),
@@ -65,6 +69,7 @@ class DashboardDrawer extends HookConsumerWidget {
               router?.replace(
                 const TasksRoute(),
               );
+              toggleDrawer();
             },
             isSelected: selectedScreenIndex == 1,
           ),
@@ -72,6 +77,7 @@ class DashboardDrawer extends HookConsumerWidget {
             icon: Icons.settings,
             title: 'Settings',
             onTap: () {
+              toggleDrawer();
               ref.read(selectedScreenProvider.notifier).state = 2;
               final router = contentRouter.currentState?.controller;
               router?.replace(
@@ -97,7 +103,7 @@ class DashboardDrawer extends HookConsumerWidget {
     Future(
       () => showCupertinoModalPopup<void>(
         context: context,
-        builder: (context) => AlertDialog(
+        builder: (ctx) => AlertDialog(
           title: const Text('Do you want to log out?'),
           actions: [
             ElevatedButton(
@@ -107,7 +113,7 @@ class DashboardDrawer extends HookConsumerWidget {
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(ctx).pop();
               },
               child: const Text(
                 'Cancel',
@@ -136,6 +142,16 @@ class DashboardDrawer extends HookConsumerWidget {
         ),
       ),
     );
+  }
+
+  toggleDrawer() async {
+    if (!kIsWeb) {
+      if (scaffoldKey!.currentState!.isDrawerOpen) {
+        scaffoldKey!.currentState!.openEndDrawer();
+      } else {
+        scaffoldKey!.currentState!.openDrawer();
+      }
+    }
   }
 }
 
