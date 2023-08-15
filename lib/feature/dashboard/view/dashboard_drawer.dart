@@ -131,7 +131,8 @@ class DashboardDrawer extends HookConsumerWidget {
                 ref.read(authProvider.notifier).logOut();
                 ref.invalidate(selectedScreenProvider);
                 ref.read(loginDaoProvider).clear();
-                context.router.pushAndPopUntil(
+                ref.invalidate(authProvider);
+                ctx.router.pushAndPopUntil(
                   AuthRoute(),
                   predicate: (route) => false,
                 );

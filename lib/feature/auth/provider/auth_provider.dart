@@ -67,7 +67,6 @@ class LoginNotifier extends StateNotifier<GenericState<AuthResponse>> {
   }
 
   void logOut() async {
-    state = const GenericState.initial();
     await _userDetailsDao.clear();
   }
 }

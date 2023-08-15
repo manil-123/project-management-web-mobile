@@ -36,29 +36,45 @@ class LoginSignUpWidget extends HookConsumerWidget {
 
     final loginModel = ref.watch<GenericState<AuthResponse>>(authProvider);
 
-    ref.listen<GenericState<AuthResponse>>(authProvider, (previous, next) {
-      next.whenOrNull(
-        success: (loginModel) async {
-          if (isLogin.value) {
-            await ref
-                .read(loginDaoProvider)
-                .saveLoginInfo(true)
-                .then((value) => context.router.pushAndPopUntil(
-                      const DashboardRouter(),
-                      predicate: (route) => false,
-                    ));
-          } else {
-            isLogin.value = !isLogin.value;
-            emailController.clear();
-            passwordController.clear();
-          }
-          showInfo(context, loginModel.message);
-        },
-        error: (message) {
-          showErrorInfo(context, message);
-        },
-      );
-    });
+    ref.listen<GenericState<AuthResponse>>(
+      authProvider,
+      (previous, next) {
+        next.maybeWhen(
+          success: (loginModel) async {
+            if (isLogin.value) {
+              await ref
+                  .read(loginDaoProvider)
+                  .saveLoginInfo(true)
+                  .then((value) => context.router.pushAndPopUntil(
+                        const DashboardRouter(),
+                        predicate: (route) => false,
+                      ));
+            } else {
+              isLogin.value = !isLogin.value;
+              emailController.clear();
+              passwordController.clear();
+            }
+            if (context.mounted) {
+              Future.delayed(Duration.zero, () {
+                showInfo(
+                  context,
+                  loginModel.message,
+                );
+              });
+            }
+          },
+          error: (message) {
+            showErrorInfo(
+              context,
+              message,
+            );
+          },
+          orElse: () {
+            debugPrint('Auth else block');
+          },
+        );
+      },
+    );
 
     return SingleChildScrollView(
       child: Form(
