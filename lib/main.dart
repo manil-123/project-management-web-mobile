@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:project_management_web_and_mobile/app/routing/route_guard.dart';
+import 'package:project_management_web_and_mobile/app/theme/theme_data.dart';
 import 'package:project_management_web_and_mobile/utils/service/auth_service.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'app/routing/app_router.gr.dart';
@@ -28,10 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Project Management App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: appTheme,
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),
     );
