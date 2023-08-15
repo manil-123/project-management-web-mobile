@@ -19,10 +19,15 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     return ScreenTypeLayout.builder(
       mobile: (context) {
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            title: const Text(
+              'Project Management',
+            ),
+          ),
           drawer: DashboardDrawer(
             contentRouter: innerRouterKey,
           ),
+          drawerScrimColor: Colors.white,
           body: ConstrainedBox(
             constraints: BoxConstraints(
               maxWidth: MediaQuery.sizeOf(context).width,
