@@ -52,9 +52,7 @@ class LoginSignUpWidget extends HookConsumerWidget {
             emailController.clear();
             passwordController.clear();
           }
-          Future.delayed(Duration.zero, () {
-            showInfo(context, loginModel.message);
-          });
+          showInfo(context, loginModel.message);
         },
         error: (message) {
           showErrorInfo(context, message);
