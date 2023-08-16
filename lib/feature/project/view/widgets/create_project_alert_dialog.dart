@@ -38,13 +38,9 @@ class CreateProjectAlertDialog extends HookConsumerWidget {
           child: newProject.maybeMap(
             orElse: () => const Text('Create'),
             loading: (type) {
-              if (type is CreateProjectResponse) {
-                return const CustomProgressIndicator(
-                  dimension: 20,
-                );
-              } else {
-                return const Text('Create');
-              }
+              return const CustomProgressIndicator(
+                dimension: 20,
+              );
             },
           ),
           onPressed: () {
