@@ -10,7 +10,9 @@ _$_CreateProjectResponse _$$_CreateProjectResponseFromJson(
         Map<String, dynamic> json) =>
     _$_CreateProjectResponse(
       success: json['success'] as bool,
-      data: ProjectModel.fromJson(json['data'] as Map<String, dynamic>),
+      data: json['data'] == null
+          ? null
+          : ProjectModel.fromJson(json['data'] as Map<String, dynamic>),
       message: json['message'] as String,
     );
 

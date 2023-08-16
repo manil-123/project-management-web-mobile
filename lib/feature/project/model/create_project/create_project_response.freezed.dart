@@ -22,7 +22,7 @@ CreateProjectResponse _$CreateProjectResponseFromJson(
 /// @nodoc
 mixin _$CreateProjectResponse {
   bool get success => throw _privateConstructorUsedError;
-  ProjectModel get data => throw _privateConstructorUsedError;
+  ProjectModel? get data => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,9 +37,9 @@ abstract class $CreateProjectResponseCopyWith<$Res> {
           $Res Function(CreateProjectResponse) then) =
       _$CreateProjectResponseCopyWithImpl<$Res, CreateProjectResponse>;
   @useResult
-  $Res call({bool success, ProjectModel data, String message});
+  $Res call({bool success, ProjectModel? data, String message});
 
-  $ProjectModelCopyWith<$Res> get data;
+  $ProjectModelCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$CreateProjectResponseCopyWithImpl<$Res,
   @override
   $Res call({
     Object? success = null,
-    Object? data = null,
+    Object? data = freezed,
     Object? message = null,
   }) {
     return _then(_value.copyWith(
@@ -65,10 +65,10 @@ class _$CreateProjectResponseCopyWithImpl<$Res,
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as bool,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as ProjectModel,
+              as ProjectModel?,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -78,8 +78,12 @@ class _$CreateProjectResponseCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ProjectModelCopyWith<$Res> get data {
-    return $ProjectModelCopyWith<$Res>(_value.data, (value) {
+  $ProjectModelCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $ProjectModelCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -93,10 +97,10 @@ abstract class _$$_CreateProjectResponseCopyWith<$Res>
       __$$_CreateProjectResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, ProjectModel data, String message});
+  $Res call({bool success, ProjectModel? data, String message});
 
   @override
-  $ProjectModelCopyWith<$Res> get data;
+  $ProjectModelCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -111,7 +115,7 @@ class __$$_CreateProjectResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? success = null,
-    Object? data = null,
+    Object? data = freezed,
     Object? message = null,
   }) {
     return _then(_$_CreateProjectResponse(
@@ -119,10 +123,10 @@ class __$$_CreateProjectResponseCopyWithImpl<$Res>
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as bool,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as ProjectModel,
+              as ProjectModel?,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -143,7 +147,7 @@ class _$_CreateProjectResponse implements _CreateProjectResponse {
   @override
   final bool success;
   @override
-  final ProjectModel data;
+  final ProjectModel? data;
   @override
   final String message;
 
@@ -184,7 +188,7 @@ class _$_CreateProjectResponse implements _CreateProjectResponse {
 abstract class _CreateProjectResponse implements CreateProjectResponse {
   const factory _CreateProjectResponse(
       {required final bool success,
-      required final ProjectModel data,
+      required final ProjectModel? data,
       required final String message}) = _$_CreateProjectResponse;
 
   factory _CreateProjectResponse.fromJson(Map<String, dynamic> json) =
@@ -193,7 +197,7 @@ abstract class _CreateProjectResponse implements CreateProjectResponse {
   @override
   bool get success;
   @override
-  ProjectModel get data;
+  ProjectModel? get data;
   @override
   String get message;
   @override

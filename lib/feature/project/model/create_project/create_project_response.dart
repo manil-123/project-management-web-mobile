@@ -8,7 +8,7 @@ part 'create_project_response.g.dart';
 class CreateProjectResponse with _$CreateProjectResponse {
   const factory CreateProjectResponse({
     required bool success,
-    required ProjectModel data,
+    required ProjectModel? data,
     required String message,
   }) = _CreateProjectResponse;
 

@@ -25,6 +25,8 @@ class CreateProjectAlertDialog extends HookConsumerWidget {
         },
         error: (errMessage) {
           Navigator.of(context).pop();
+          ref.read(projectProvider.notifier).getProjectList();
+          showErrorInfo(context, errMessage);
         },
       );
     });
