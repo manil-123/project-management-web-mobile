@@ -20,6 +20,7 @@ mixin _$NetworkExceptions {
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorizedRequest,
     required TResult Function() badRequest,
+    required TResult Function() methodNotAllowed,
     required TResult Function() requestTimeout,
     required TResult Function() internalServerError,
     required TResult Function() noInternetConnection,
@@ -32,6 +33,7 @@ mixin _$NetworkExceptions {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unauthorizedRequest,
     TResult? Function()? badRequest,
+    TResult? Function()? methodNotAllowed,
     TResult? Function()? requestTimeout,
     TResult? Function()? internalServerError,
     TResult? Function()? noInternetConnection,
@@ -44,6 +46,7 @@ mixin _$NetworkExceptions {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorizedRequest,
     TResult Function()? badRequest,
+    TResult Function()? methodNotAllowed,
     TResult Function()? requestTimeout,
     TResult Function()? internalServerError,
     TResult Function()? noInternetConnection,
@@ -57,6 +60,7 @@ mixin _$NetworkExceptions {
   TResult map<TResult extends Object?>({
     required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
     required TResult Function(BadRequest value) badRequest,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
@@ -69,6 +73,7 @@ mixin _$NetworkExceptions {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
     TResult? Function(RequestTimeout value)? requestTimeout,
     TResult? Function(InternalServerError value)? internalServerError,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
@@ -81,6 +86,7 @@ mixin _$NetworkExceptions {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult Function(BadRequest value)? badRequest,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
@@ -159,6 +165,7 @@ class _$UnauthorizedRequest
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorizedRequest,
     required TResult Function() badRequest,
+    required TResult Function() methodNotAllowed,
     required TResult Function() requestTimeout,
     required TResult Function() internalServerError,
     required TResult Function() noInternetConnection,
@@ -174,6 +181,7 @@ class _$UnauthorizedRequest
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unauthorizedRequest,
     TResult? Function()? badRequest,
+    TResult? Function()? methodNotAllowed,
     TResult? Function()? requestTimeout,
     TResult? Function()? internalServerError,
     TResult? Function()? noInternetConnection,
@@ -189,6 +197,7 @@ class _$UnauthorizedRequest
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorizedRequest,
     TResult Function()? badRequest,
+    TResult Function()? methodNotAllowed,
     TResult Function()? requestTimeout,
     TResult Function()? internalServerError,
     TResult Function()? noInternetConnection,
@@ -208,6 +217,7 @@ class _$UnauthorizedRequest
   TResult map<TResult extends Object?>({
     required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
     required TResult Function(BadRequest value) badRequest,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
@@ -223,6 +233,7 @@ class _$UnauthorizedRequest
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
     TResult? Function(RequestTimeout value)? requestTimeout,
     TResult? Function(InternalServerError value)? internalServerError,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
@@ -238,6 +249,7 @@ class _$UnauthorizedRequest
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult Function(BadRequest value)? badRequest,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
@@ -303,6 +315,7 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorizedRequest,
     required TResult Function() badRequest,
+    required TResult Function() methodNotAllowed,
     required TResult Function() requestTimeout,
     required TResult Function() internalServerError,
     required TResult Function() noInternetConnection,
@@ -318,6 +331,7 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unauthorizedRequest,
     TResult? Function()? badRequest,
+    TResult? Function()? methodNotAllowed,
     TResult? Function()? requestTimeout,
     TResult? Function()? internalServerError,
     TResult? Function()? noInternetConnection,
@@ -333,6 +347,7 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorizedRequest,
     TResult Function()? badRequest,
+    TResult Function()? methodNotAllowed,
     TResult Function()? requestTimeout,
     TResult Function()? internalServerError,
     TResult Function()? noInternetConnection,
@@ -352,6 +367,7 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
   TResult map<TResult extends Object?>({
     required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
     required TResult Function(BadRequest value) badRequest,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
@@ -367,6 +383,7 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
     TResult? Function(RequestTimeout value)? requestTimeout,
     TResult? Function(InternalServerError value)? internalServerError,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
@@ -382,6 +399,7 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult Function(BadRequest value)? badRequest,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
@@ -399,6 +417,159 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
 
 abstract class BadRequest implements NetworkExceptions {
   const factory BadRequest() = _$BadRequest;
+}
+
+/// @nodoc
+abstract class _$$MethodNotAllowedCopyWith<$Res> {
+  factory _$$MethodNotAllowedCopyWith(
+          _$MethodNotAllowed value, $Res Function(_$MethodNotAllowed) then) =
+      __$$MethodNotAllowedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$MethodNotAllowedCopyWithImpl<$Res>
+    extends _$NetworkExceptionsCopyWithImpl<$Res, _$MethodNotAllowed>
+    implements _$$MethodNotAllowedCopyWith<$Res> {
+  __$$MethodNotAllowedCopyWithImpl(
+      _$MethodNotAllowed _value, $Res Function(_$MethodNotAllowed) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$MethodNotAllowed
+    with DiagnosticableTreeMixin
+    implements MethodNotAllowed {
+  const _$MethodNotAllowed();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'NetworkExceptions.methodNotAllowed()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'NetworkExceptions.methodNotAllowed'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$MethodNotAllowed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unauthorizedRequest,
+    required TResult Function() badRequest,
+    required TResult Function() methodNotAllowed,
+    required TResult Function() requestTimeout,
+    required TResult Function() internalServerError,
+    required TResult Function() noInternetConnection,
+    required TResult Function() formatException,
+    required TResult Function() unexpectedError,
+    required TResult Function(String error) defaultError,
+  }) {
+    return methodNotAllowed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unauthorizedRequest,
+    TResult? Function()? badRequest,
+    TResult? Function()? methodNotAllowed,
+    TResult? Function()? requestTimeout,
+    TResult? Function()? internalServerError,
+    TResult? Function()? noInternetConnection,
+    TResult? Function()? formatException,
+    TResult? Function()? unexpectedError,
+    TResult? Function(String error)? defaultError,
+  }) {
+    return methodNotAllowed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unauthorizedRequest,
+    TResult Function()? badRequest,
+    TResult Function()? methodNotAllowed,
+    TResult Function()? requestTimeout,
+    TResult Function()? internalServerError,
+    TResult Function()? noInternetConnection,
+    TResult Function()? formatException,
+    TResult Function()? unexpectedError,
+    TResult Function(String error)? defaultError,
+    required TResult orElse(),
+  }) {
+    if (methodNotAllowed != null) {
+      return methodNotAllowed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
+    required TResult Function(BadRequest value) badRequest,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
+    required TResult Function(RequestTimeout value) requestTimeout,
+    required TResult Function(InternalServerError value) internalServerError,
+    required TResult Function(NoInternetConnection value) noInternetConnection,
+    required TResult Function(FormatException value) formatException,
+    required TResult Function(UnexpectedError value) unexpectedError,
+    required TResult Function(DefaultError value) defaultError,
+  }) {
+    return methodNotAllowed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
+    TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
+    TResult? Function(RequestTimeout value)? requestTimeout,
+    TResult? Function(InternalServerError value)? internalServerError,
+    TResult? Function(NoInternetConnection value)? noInternetConnection,
+    TResult? Function(FormatException value)? formatException,
+    TResult? Function(UnexpectedError value)? unexpectedError,
+    TResult? Function(DefaultError value)? defaultError,
+  }) {
+    return methodNotAllowed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
+    TResult Function(BadRequest value)? badRequest,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
+    TResult Function(RequestTimeout value)? requestTimeout,
+    TResult Function(InternalServerError value)? internalServerError,
+    TResult Function(NoInternetConnection value)? noInternetConnection,
+    TResult Function(FormatException value)? formatException,
+    TResult Function(UnexpectedError value)? unexpectedError,
+    TResult Function(DefaultError value)? defaultError,
+    required TResult orElse(),
+  }) {
+    if (methodNotAllowed != null) {
+      return methodNotAllowed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MethodNotAllowed implements NetworkExceptions {
+  const factory MethodNotAllowed() = _$MethodNotAllowed;
 }
 
 /// @nodoc
@@ -448,6 +619,7 @@ class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorizedRequest,
     required TResult Function() badRequest,
+    required TResult Function() methodNotAllowed,
     required TResult Function() requestTimeout,
     required TResult Function() internalServerError,
     required TResult Function() noInternetConnection,
@@ -463,6 +635,7 @@ class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unauthorizedRequest,
     TResult? Function()? badRequest,
+    TResult? Function()? methodNotAllowed,
     TResult? Function()? requestTimeout,
     TResult? Function()? internalServerError,
     TResult? Function()? noInternetConnection,
@@ -478,6 +651,7 @@ class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorizedRequest,
     TResult Function()? badRequest,
+    TResult Function()? methodNotAllowed,
     TResult Function()? requestTimeout,
     TResult Function()? internalServerError,
     TResult Function()? noInternetConnection,
@@ -497,6 +671,7 @@ class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
   TResult map<TResult extends Object?>({
     required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
     required TResult Function(BadRequest value) badRequest,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
@@ -512,6 +687,7 @@ class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
     TResult? Function(RequestTimeout value)? requestTimeout,
     TResult? Function(InternalServerError value)? internalServerError,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
@@ -527,6 +703,7 @@ class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult Function(BadRequest value)? badRequest,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
@@ -595,6 +772,7 @@ class _$InternalServerError
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorizedRequest,
     required TResult Function() badRequest,
+    required TResult Function() methodNotAllowed,
     required TResult Function() requestTimeout,
     required TResult Function() internalServerError,
     required TResult Function() noInternetConnection,
@@ -610,6 +788,7 @@ class _$InternalServerError
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unauthorizedRequest,
     TResult? Function()? badRequest,
+    TResult? Function()? methodNotAllowed,
     TResult? Function()? requestTimeout,
     TResult? Function()? internalServerError,
     TResult? Function()? noInternetConnection,
@@ -625,6 +804,7 @@ class _$InternalServerError
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorizedRequest,
     TResult Function()? badRequest,
+    TResult Function()? methodNotAllowed,
     TResult Function()? requestTimeout,
     TResult Function()? internalServerError,
     TResult Function()? noInternetConnection,
@@ -644,6 +824,7 @@ class _$InternalServerError
   TResult map<TResult extends Object?>({
     required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
     required TResult Function(BadRequest value) badRequest,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
@@ -659,6 +840,7 @@ class _$InternalServerError
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
     TResult? Function(RequestTimeout value)? requestTimeout,
     TResult? Function(InternalServerError value)? internalServerError,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
@@ -674,6 +856,7 @@ class _$InternalServerError
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult Function(BadRequest value)? badRequest,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
@@ -742,6 +925,7 @@ class _$NoInternetConnection
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorizedRequest,
     required TResult Function() badRequest,
+    required TResult Function() methodNotAllowed,
     required TResult Function() requestTimeout,
     required TResult Function() internalServerError,
     required TResult Function() noInternetConnection,
@@ -757,6 +941,7 @@ class _$NoInternetConnection
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unauthorizedRequest,
     TResult? Function()? badRequest,
+    TResult? Function()? methodNotAllowed,
     TResult? Function()? requestTimeout,
     TResult? Function()? internalServerError,
     TResult? Function()? noInternetConnection,
@@ -772,6 +957,7 @@ class _$NoInternetConnection
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorizedRequest,
     TResult Function()? badRequest,
+    TResult Function()? methodNotAllowed,
     TResult Function()? requestTimeout,
     TResult Function()? internalServerError,
     TResult Function()? noInternetConnection,
@@ -791,6 +977,7 @@ class _$NoInternetConnection
   TResult map<TResult extends Object?>({
     required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
     required TResult Function(BadRequest value) badRequest,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
@@ -806,6 +993,7 @@ class _$NoInternetConnection
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
     TResult? Function(RequestTimeout value)? requestTimeout,
     TResult? Function(InternalServerError value)? internalServerError,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
@@ -821,6 +1009,7 @@ class _$NoInternetConnection
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult Function(BadRequest value)? badRequest,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
@@ -889,6 +1078,7 @@ class _$FormatException
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorizedRequest,
     required TResult Function() badRequest,
+    required TResult Function() methodNotAllowed,
     required TResult Function() requestTimeout,
     required TResult Function() internalServerError,
     required TResult Function() noInternetConnection,
@@ -904,6 +1094,7 @@ class _$FormatException
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unauthorizedRequest,
     TResult? Function()? badRequest,
+    TResult? Function()? methodNotAllowed,
     TResult? Function()? requestTimeout,
     TResult? Function()? internalServerError,
     TResult? Function()? noInternetConnection,
@@ -919,6 +1110,7 @@ class _$FormatException
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorizedRequest,
     TResult Function()? badRequest,
+    TResult Function()? methodNotAllowed,
     TResult Function()? requestTimeout,
     TResult Function()? internalServerError,
     TResult Function()? noInternetConnection,
@@ -938,6 +1130,7 @@ class _$FormatException
   TResult map<TResult extends Object?>({
     required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
     required TResult Function(BadRequest value) badRequest,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
@@ -953,6 +1146,7 @@ class _$FormatException
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
     TResult? Function(RequestTimeout value)? requestTimeout,
     TResult? Function(InternalServerError value)? internalServerError,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
@@ -968,6 +1162,7 @@ class _$FormatException
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult Function(BadRequest value)? badRequest,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
@@ -1036,6 +1231,7 @@ class _$UnexpectedError
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorizedRequest,
     required TResult Function() badRequest,
+    required TResult Function() methodNotAllowed,
     required TResult Function() requestTimeout,
     required TResult Function() internalServerError,
     required TResult Function() noInternetConnection,
@@ -1051,6 +1247,7 @@ class _$UnexpectedError
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unauthorizedRequest,
     TResult? Function()? badRequest,
+    TResult? Function()? methodNotAllowed,
     TResult? Function()? requestTimeout,
     TResult? Function()? internalServerError,
     TResult? Function()? noInternetConnection,
@@ -1066,6 +1263,7 @@ class _$UnexpectedError
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorizedRequest,
     TResult Function()? badRequest,
+    TResult Function()? methodNotAllowed,
     TResult Function()? requestTimeout,
     TResult Function()? internalServerError,
     TResult Function()? noInternetConnection,
@@ -1085,6 +1283,7 @@ class _$UnexpectedError
   TResult map<TResult extends Object?>({
     required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
     required TResult Function(BadRequest value) badRequest,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
@@ -1100,6 +1299,7 @@ class _$UnexpectedError
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
     TResult? Function(RequestTimeout value)? requestTimeout,
     TResult? Function(InternalServerError value)? internalServerError,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
@@ -1115,6 +1315,7 @@ class _$UnexpectedError
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult Function(BadRequest value)? badRequest,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NoInternetConnection value)? noInternetConnection,
@@ -1208,6 +1409,7 @@ class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
   TResult when<TResult extends Object?>({
     required TResult Function() unauthorizedRequest,
     required TResult Function() badRequest,
+    required TResult Function() methodNotAllowed,
     required TResult Function() requestTimeout,
     required TResult Function() internalServerError,
     required TResult Function() noInternetConnection,
@@ -1223,6 +1425,7 @@ class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? unauthorizedRequest,
     TResult? Function()? badRequest,
+    TResult? Function()? methodNotAllowed,
     TResult? Function()? requestTimeout,
     TResult? Function()? internalServerError,
     TResult? Function()? noInternetConnection,
@@ -1238,6 +1441,7 @@ class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthorizedRequest,
     TResult Function()? badRequest,
+    TResult Function()? methodNotAllowed,
     TResult Function()? requestTimeout,
     TResult Function()? internalServerError,
     TResult Function()? noInternetConnection,
@@ -1257,6 +1461,7 @@ class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
   TResult map<TResult extends Object?>({
     required TResult Function(UnauthorizedRequest value) unauthorizedRequest,
     required TResult Function(BadRequest value) badRequest,
+    required TResult Function(MethodNotAllowed value) methodNotAllowed,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NoInternetConnection value) noInternetConnection,
@@ -1272,6 +1477,7 @@ class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult? Function(BadRequest value)? badRequest,
+    TResult? Function(MethodNotAllowed value)? methodNotAllowed,
     TResult? Function(RequestTimeout value)? requestTimeout,
     TResult? Function(InternalServerError value)? internalServerError,
     TResult? Function(NoInternetConnection value)? noInternetConnection,
@@ -1287,6 +1493,7 @@ class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UnauthorizedRequest value)? unauthorizedRequest,
     TResult Function(BadRequest value)? badRequest,
+    TResult Function(MethodNotAllowed value)? methodNotAllowed,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NoInternetConnection value)? noInternetConnection,

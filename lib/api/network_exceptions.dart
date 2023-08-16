@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -10,6 +11,7 @@ part 'network_exceptions.freezed.dart';
 class NetworkExceptions with _$NetworkExceptions {
   const factory NetworkExceptions.unauthorizedRequest() = UnauthorizedRequest;
   const factory NetworkExceptions.badRequest() = BadRequest;
+  const factory NetworkExceptions.methodNotAllowed() = MethodNotAllowed;
   const factory NetworkExceptions.requestTimeout() = RequestTimeout;
   const factory NetworkExceptions.internalServerError() = InternalServerError;
   const factory NetworkExceptions.noInternetConnection() = NoInternetConnection;
@@ -25,6 +27,8 @@ class NetworkExceptions with _$NetworkExceptions {
         return const NetworkExceptions.unauthorizedRequest();
       case 403:
         return const NetworkExceptions.unauthorizedRequest();
+      case 405:
+        return const NetworkExceptions.methodNotAllowed();
       case 500:
         return const NetworkExceptions.internalServerError();
       default:
@@ -69,7 +73,12 @@ class NetworkExceptions with _$NetworkExceptions {
               networkExceptions = const NetworkExceptions.requestTimeout();
               break;
             // ignore: no_default_cases
+            case DioErrorType.other:
+              networkExceptions =
+                  NetworkExceptions.handleResponse(error.response?.statusCode);
+              break;
             default:
+              log(error.response!.statusCode.toString());
               networkExceptions =
                   NetworkExceptions.handleResponse(error.response?.statusCode);
               break;
@@ -107,6 +116,9 @@ class NetworkExceptions with _$NetworkExceptions {
       },
       badRequest: () {
         errorMessage = 'Bad request';
+      },
+      methodNotAllowed: () {
+        errorMessage = 'Method not allowed';
       },
       unauthorizedRequest: () {
         errorMessage = 'Invalid Credentials';
