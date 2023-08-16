@@ -1,6 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:project_management_web_and_mobile/app/state/generic_state.dart';
 import 'package:project_management_web_and_mobile/feature/project/model/create_project/create_project_response.dart';
+import 'package:project_management_web_and_mobile/feature/project/model/delete_project/delete_project_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/model/project_list/project_list_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/repository/project_repository.dart';
 import 'package:project_management_web_and_mobile/providers/repository_providers.dart';
@@ -52,6 +53,23 @@ class ProjectNotifier extends StateNotifier<GenericState> {
       (createProjectResponse) {
         state = GenericState<CreateProjectResponse>.success(
           createProjectResponse,
+        );
+      },
+    );
+  }
+
+  Future<void> deleteProject(String projectId) async {
+    state = const GenericState<DeleteProjectResponse>.loading();
+    final result = await _projectRepository.deleteProject(projectId);
+    result.fold(
+      (failure) {
+        state = GenericState<DeleteProjectResponse>.error(
+          failure.errorMessage,
+        );
+      },
+      (deleteProjectResponse) {
+        state = GenericState<DeleteProjectResponse>.success(
+          deleteProjectResponse,
         );
       },
     );
