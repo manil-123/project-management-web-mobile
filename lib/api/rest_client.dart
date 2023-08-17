@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:project_management_web_and_mobile/app/constants/api_endpoints.dart';
 import 'package:project_management_web_and_mobile/feature/auth/model/auth_response.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/model/dashboard_info.dart';
-import 'package:project_management_web_and_mobile/feature/project/model/project_list_response.dart';
+import 'package:project_management_web_and_mobile/feature/project/model/project_list/project_list_response.dart';
 import 'package:retrofit/http.dart';
 
 part 'rest_client.g.dart';

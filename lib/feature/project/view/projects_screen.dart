@@ -8,7 +8,7 @@ import 'package:project_management_web_and_mobile/app/widgets/custom_progress_in
 import 'package:project_management_web_and_mobile/app/widgets/custom_text_form_field.dart';
 import 'package:project_management_web_and_mobile/app/widgets/message_widget.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboard_drawer.dart';
-import 'package:project_management_web_and_mobile/feature/project/model/project_list_response.dart';
+import 'package:project_management_web_and_mobile/feature/project/model/project_list/project_list_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/provider/project_provider.dart';
 import 'package:project_management_web_and_mobile/utils/extensions/padding_extension.dart';
 import 'package:responsive_builder/responsive_builder.dart';
