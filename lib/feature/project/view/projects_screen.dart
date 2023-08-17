@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:project_management_web_and_mobile/app/routing/app_router.gr.dart';
 import 'package:project_management_web_and_mobile/app/theme/text_styles.dart';
 import 'package:project_management_web_and_mobile/app/widgets/custom_progress_indicator.dart';
+import 'package:project_management_web_and_mobile/app/widgets/custom_text_form_field.dart';
+import 'package:project_management_web_and_mobile/app/widgets/message_widget.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboard_drawer.dart';
 import 'package:project_management_web_and_mobile/feature/project/model/project_list_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/provider/project_provider.dart';
@@ -43,7 +46,9 @@ class _ProjectsScreenState extends ConsumerState<ProjectsScreen> {
   Widget build(BuildContext context) {
     final projectListModel = ref.watch(projectProvider);
     return Scaffold(
-      floatingActionButton: const _FloatingActionButton(),
+      floatingActionButton: _FloatingActionButton(
+        onTap: _createProjectAlertDialog,
+      ),
       body: projectListModel.when(
         initial: () => const SizedBox(),
         loading: () => const CustomProgressIndicator(),
@@ -107,10 +112,24 @@ class _ProjectsScreenState extends ConsumerState<ProjectsScreen> {
       mobile: (_) => Container(),
     );
   }
+
+  Future<void> _createProjectAlertDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) {
+        return const CreateProjectAlertDialog();
+      },
+    );
+  }
 }
 
 class _FloatingActionButton extends StatelessWidget {
-  const _FloatingActionButton();
+  const _FloatingActionButton({
+    required this.onTap,
+  });
+
+  final Future<void> Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +137,7 @@ class _FloatingActionButton extends StatelessWidget {
       mobile: (_) {
         return FloatingActionButton(
           backgroundColor: Colors.black,
-          onPressed: () {},
+          onPressed: onTap,
           child: Text(
             '+',
             style: AppTextStyle.boldText20.copyWith(
@@ -129,7 +148,7 @@ class _FloatingActionButton extends StatelessWidget {
       },
       desktop: (_) {
         return InkWell(
-          onTap: () {},
+          onTap: onTap,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
@@ -147,6 +166,37 @@ class _FloatingActionButton extends StatelessWidget {
           20,
         );
       },
+    );
+  }
+}
+
+class CreateProjectAlertDialog extends HookConsumerWidget {
+  const CreateProjectAlertDialog({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final projectNameController = useTextEditingController();
+    return AlertDialog(
+      title: const Text('Create New Project'),
+      content: CustomTextFormField(
+        controller: projectNameController,
+      ),
+      actions: <Widget>[
+        TextButton(
+          child: const Text('Create'),
+          onPressed: () {
+            if (projectNameController.text.isEmpty) {
+              showErrorInfo(context, 'Project name cannot be empty');
+            } else {}
+          },
+        ),
+        TextButton(
+          child: const Text('Cancel'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
     );
   }
 }
