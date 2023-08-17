@@ -21,11 +21,8 @@ CreateProjectResponse _$CreateProjectResponseFromJson(
 
 /// @nodoc
 mixin _$CreateProjectResponse {
-  @JsonKey(name: "success")
   bool get success => throw _privateConstructorUsedError;
-  @JsonKey(name: "data")
   ProjectModel get data => throw _privateConstructorUsedError;
-  @JsonKey(name: "message")
   String get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,10 +37,7 @@ abstract class $CreateProjectResponseCopyWith<$Res> {
           $Res Function(CreateProjectResponse) then) =
       _$CreateProjectResponseCopyWithImpl<$Res, CreateProjectResponse>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "success") bool success,
-      @JsonKey(name: "data") ProjectModel data,
-      @JsonKey(name: "message") String message});
+  $Res call({bool success, ProjectModel data, String message});
 
   $ProjectModelCopyWith<$Res> get data;
 }
@@ -99,10 +93,7 @@ abstract class _$$_CreateProjectResponseCopyWith<$Res>
       __$$_CreateProjectResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "success") bool success,
-      @JsonKey(name: "data") ProjectModel data,
-      @JsonKey(name: "message") String message});
+  $Res call({bool success, ProjectModel data, String message});
 
   @override
   $ProjectModelCopyWith<$Res> get data;
@@ -144,21 +135,16 @@ class __$$_CreateProjectResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CreateProjectResponse implements _CreateProjectResponse {
   const _$_CreateProjectResponse(
-      {@JsonKey(name: "success") required this.success,
-      @JsonKey(name: "data") required this.data,
-      @JsonKey(name: "message") required this.message});
+      {required this.success, required this.data, required this.message});
 
   factory _$_CreateProjectResponse.fromJson(Map<String, dynamic> json) =>
       _$$_CreateProjectResponseFromJson(json);
 
   @override
-  @JsonKey(name: "success")
   final bool success;
   @override
-  @JsonKey(name: "data")
   final ProjectModel data;
   @override
-  @JsonKey(name: "message")
   final String message;
 
   @override
@@ -197,22 +183,18 @@ class _$_CreateProjectResponse implements _CreateProjectResponse {
 
 abstract class _CreateProjectResponse implements CreateProjectResponse {
   const factory _CreateProjectResponse(
-          {@JsonKey(name: "success") required final bool success,
-          @JsonKey(name: "data") required final ProjectModel data,
-          @JsonKey(name: "message") required final String message}) =
-      _$_CreateProjectResponse;
+      {required final bool success,
+      required final ProjectModel data,
+      required final String message}) = _$_CreateProjectResponse;
 
   factory _CreateProjectResponse.fromJson(Map<String, dynamic> json) =
       _$_CreateProjectResponse.fromJson;
 
   @override
-  @JsonKey(name: "success")
   bool get success;
   @override
-  @JsonKey(name: "data")
   ProjectModel get data;
   @override
-  @JsonKey(name: "message")
   String get message;
   @override
   @JsonKey(ignore: true)
