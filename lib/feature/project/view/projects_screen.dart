@@ -70,45 +70,92 @@ class _ProjectsScreenState extends ConsumerState<ProjectsScreen> {
 
   Widget _projectsList(List<ProjectModel> projectsList) {
     return ScreenTypeLayout.builder(
-      desktop: (_) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'Projects',
-            style: AppTextStyle.boldText20.copyWith(
-              fontSize: 30,
-            ),
-          ).pB(30),
-          Wrap(
-            children: [
-              for (final project in projectsList)
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: 80,
-                    maxWidth: MediaQuery.sizeOf(context).width * 0.2,
-                    minWidth: 100,
+      desktop: (_) => SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Projects',
+              style: AppTextStyle.boldText20.copyWith(
+                fontSize: 30,
+              ),
+            ).pB(30),
+            Wrap(
+              children: [
+                for (final project in projectsList)
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: 80,
+                      maxWidth: MediaQuery.sizeOf(context).width * 0.2,
+                      minWidth: 100,
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.purple,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: ExpansionTile(
+                        title: Text(
+                          project.projectName,
+                          style: AppTextStyle.semiBoldText16.copyWith(
+                            color: Colors.white,
+                          ),
+                        ).pXY(20, 20),
+                        collapsedIconColor: Colors.white,
+                        iconColor: Colors.white,
+                        childrenPadding: const EdgeInsets.only(bottom: 16),
+                        children: [
+                          _projectDetail(
+                            'Total Members',
+                            project.members.length.toString(),
+                          ),
+                          _projectDetail(
+                            'Total Sprints',
+                            project.sprints.length.toString(),
+                          ),
+                          _projectDetail(
+                            'Total Tickets',
+                            '${calculateTotalTickets(project.sprints)}',
+                          ),
+                        ],
+                      ),
+                    ).pR(30).pT(30),
                   ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.purple,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Center(
-                      child: Text(
-                        project.projectName,
-                        style: AppTextStyle.semiBoldText16.copyWith(
-                          color: Colors.white,
-                        ),
-                      ).pXY(20, 20),
-                    ),
-                  ).pR(30).pT(30),
-                ),
-            ],
-          ),
-        ],
-      ).pXY(40, 40),
+              ],
+            ),
+          ],
+        ).pXY(40, 40),
+      ),
       mobile: (_) => Container(),
+    );
+  }
+
+  int calculateTotalTickets(List<SprintModel> sprints) {
+    int totalTickets = 0;
+    for (final sprint in sprints) {
+      totalTickets += sprint.tickets.length;
+    }
+    return totalTickets;
+  }
+
+  Widget _projectDetail(String title, String value) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(
+          title,
+          style: AppTextStyle.boldText14.copyWith(
+            color: Colors.white,
+          ),
+        ),
+        Text(
+          value,
+          style: AppTextStyle.boldText14.copyWith(
+            color: Colors.white,
+          ),
+        ),
+      ],
     );
   }
 
