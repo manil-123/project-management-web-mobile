@@ -7,6 +7,7 @@ import 'package:project_management_web_and_mobile/app/typedef/typedef.dart';
 
 abstract class ProjectRepository {
   GetProjectListResponse getProjectList();
+  GetCreateProjectResponse createProject(String projectName);
 }
 
 class ProjectRepositoryImpl implements ProjectRepository {
@@ -19,6 +20,30 @@ class ProjectRepositoryImpl implements ProjectRepository {
     return runApiZoned(
       fn: () async {
         final response = await _restClient.getProjectList();
+        if (response.success == true) {
+          return Right(response);
+        } else {
+          return Left(Failure(
+            errorMessage: response.message,
+          ));
+        }
+      },
+      exceptionHandler: (error) {
+        return Left(
+          Failure(
+            errorMessage: NetworkExceptions.handleErrorToString(error),
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  GetCreateProjectResponse createProject(String projectName) {
+    return runApiZoned(
+      fn: () async {
+        final response =
+            await _restClient.createProject(projectName: projectName);
         if (response.success == true) {
           return Right(response);
         } else {
