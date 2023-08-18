@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:project_management_web_and_mobile/app/state/generic_state.dart';
+import 'package:project_management_web_and_mobile/feature/project/model/create_project/create_project_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/model/project_list/project_list_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/repository/project_repository.dart';
 import 'package:project_management_web_and_mobile/providers/repository_providers.dart';
@@ -34,6 +35,23 @@ class ProjectNotifier extends StateNotifier<GenericState> {
       (projectListResponse) async {
         state = GenericState<List<ProjectModel>>.success(
           projectListResponse.data,
+        );
+      },
+    );
+  }
+
+  Future<void> createProject(String projectName) async {
+    state = const GenericState<CreateProjectResponse>.loading();
+    final result = await _projectRepository.createProject(projectName);
+    result.fold(
+      (failure) {
+        state = GenericState<CreateProjectResponse>.error(
+          failure.errorMessage,
+        );
+      },
+      (createProjectResponse) {
+        state = GenericState<CreateProjectResponse>.success(
+          createProjectResponse,
         );
       },
     );
