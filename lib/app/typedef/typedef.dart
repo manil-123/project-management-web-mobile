@@ -5,6 +5,7 @@ import 'package:project_management_web_and_mobile/feature/dashboard/model/dashbo
 import 'package:project_management_web_and_mobile/feature/project/model/create_project/create_project_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/model/delete_project/delete_project_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/model/project_list/project_list_response.dart';
+import 'package:project_management_web_and_mobile/feature/settings/model/change_password_response.dart';
 
 typedef GetAuthResponse = Future<Either<Failure, AuthResponse>>;
 
@@ -17,3 +18,6 @@ typedef GetCreateProjectResponse
 
 typedef GetDeleteProjectResponse
     = Future<Either<Failure, DeleteProjectResponse>>;
+
+typedef GetChangePasswordResponse
+    = Future<Either<Failure, ChangePasswordResponse>>;
