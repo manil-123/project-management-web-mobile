@@ -51,7 +51,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               height: 100.0,
             ),
             SettingsItem(
-              onTap: () {},
+              onTap: () {
+                context.router.push(
+                  ChangePasswordRoute(),
+                );
+              },
               title: 'Change Password',
             ),
             SettingsItem(
@@ -100,6 +104,7 @@ class SettingsItem extends StatelessWidget {
           ),
           child: Text(
             title,
+            textAlign: TextAlign.center,
             style: AppTextStyle.semiBoldText14,
           ).pXY(MediaQuery.sizeOf(context).width * 0.2, 20),
         ),

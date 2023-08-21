@@ -79,9 +79,11 @@ class AppRouter extends _i8.RootStackRouter {
       );
     },
     ChangePasswordRoute.name: (routeData) {
+      final args = routeData.argsAs<ChangePasswordRouteArgs>(
+          orElse: () => const ChangePasswordRouteArgs());
       return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i7.ChangePasswordScreen(),
+        child: _i7.ChangePasswordScreen(key: args.key),
       );
     },
   };
@@ -237,12 +239,24 @@ class SettingsRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.ChangePasswordScreen]
-class ChangePasswordRoute extends _i8.PageRouteInfo<void> {
-  const ChangePasswordRoute()
+class ChangePasswordRoute extends _i8.PageRouteInfo<ChangePasswordRouteArgs> {
+  ChangePasswordRoute({_i9.Key? key})
       : super(
           ChangePasswordRoute.name,
           path: 'changePassword',
+          args: ChangePasswordRouteArgs(key: key),
         );
 
   static const String name = 'ChangePasswordRoute';
+}
+
+class ChangePasswordRouteArgs {
+  const ChangePasswordRouteArgs({this.key});
+
+  final _i9.Key? key;
+
+  @override
+  String toString() {
+    return 'ChangePasswordRouteArgs{key: $key}';
+  }
 }
