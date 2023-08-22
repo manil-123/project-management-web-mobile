@@ -5,6 +5,7 @@ import 'package:project_management_web_and_mobile/feature/dashboard/model/dashbo
 import 'package:project_management_web_and_mobile/feature/project/model/create_project/create_project_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/model/delete_project/delete_project_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/model/project_list/project_list_response.dart';
+import 'package:project_management_web_and_mobile/feature/settings/model/change_password_response.dart';
 import 'package:retrofit/http.dart';
 
 part 'rest_client.g.dart';
@@ -40,5 +41,13 @@ abstract class RestClient {
   @DELETE(ApiEndpoints.deleteProjectUrl)
   Future<DeleteProjectResponse> deleteProject({
     @Field('project_id') required String projectId,
+  });
+
+  //Settings
+  @PUT(ApiEndpoints.changePasswordUrl)
+  Future<ChangePasswordResponse> changePassword({
+    @Query('id') required String id,
+    @Field('old_password') required String oldPassword,
+    @Field('new_password') required String newPassword,
   });
 }
