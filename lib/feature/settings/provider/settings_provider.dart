@@ -33,9 +33,10 @@ class SettingsNotifier
       state = const GenericState.error(
         'Logged in user details not found !!!',
       );
+      return;
     }
     final result = await _settingsRepository.changePassword(
-      currentUser!.userId,
+      currentUser.userId,
       oldPassword,
       newPassword,
     );
