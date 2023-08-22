@@ -4,4 +4,5 @@ class Routes {
   static const String projectsRoute = 'projects';
   static const String tasksRoute = 'tasks';
   static const String settingsRoute = 'settings';
+  static const String changePasswordRoute = 'changePassword';
 }

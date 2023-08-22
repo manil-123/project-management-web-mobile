@@ -5,6 +5,7 @@ import 'package:project_management_web_and_mobile/app/routing/routes.dart';
 import 'package:project_management_web_and_mobile/feature/auth/view/auth_screen.dart';
 import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboard_screen.dart';
 import 'package:project_management_web_and_mobile/feature/project/view/projects_screen.dart';
+import 'package:project_management_web_and_mobile/feature/settings/view/change_password_screen.dart';
 import 'package:project_management_web_and_mobile/feature/settings/view/settings_screen.dart';
 import 'package:project_management_web_and_mobile/feature/settings/view/tasks_screen.dart';
 
@@ -30,17 +31,25 @@ import 'package:project_management_web_and_mobile/feature/settings/view/tasks_sc
             AutoRoute(
               path: Routes.projectsRoute,
               page: ProjectsScreen,
-              maintainState: false,
             ),
             AutoRoute(
               path: Routes.tasksRoute,
               page: TasksScreen,
-              maintainState: false,
             ),
             AutoRoute(
               path: Routes.settingsRoute,
-              page: SettingsScreen,
-              maintainState: false,
+              name: 'SettingsRouter',
+              page: EmptyRouterPage,
+              children: [
+                AutoRoute(
+                  path: '',
+                  page: SettingsScreen,
+                ),
+                AutoRoute(
+                  path: Routes.changePasswordRoute,
+                  page: ChangePasswordScreen,
+                ),
+              ],
             ),
           ],
         ),

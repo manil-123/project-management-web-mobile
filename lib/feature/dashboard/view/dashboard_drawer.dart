@@ -81,7 +81,7 @@ class DashboardDrawer extends HookConsumerWidget {
               ref.read(selectedScreenProvider.notifier).state = 2;
               final router = contentRouter.currentState?.controller;
               router?.replace(
-                const SettingsRoute(),
+                const SettingsRouter(),
               );
             },
             isSelected: selectedScreenIndex == 2,
