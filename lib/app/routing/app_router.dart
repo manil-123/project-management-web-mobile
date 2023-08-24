@@ -7,7 +7,7 @@ import 'package:project_management_web_and_mobile/feature/dashboard/view/dashboa
 import 'package:project_management_web_and_mobile/feature/project/view/projects_screen.dart';
 import 'package:project_management_web_and_mobile/feature/settings/view/change_password_screen.dart';
 import 'package:project_management_web_and_mobile/feature/settings/view/settings_screen.dart';
-import 'package:project_management_web_and_mobile/feature/settings/view/tasks_screen.dart';
+import 'package:project_management_web_and_mobile/feature/tasks/view/tasks_screen.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Screen,Route',

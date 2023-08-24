@@ -126,6 +126,9 @@ class DashboardDrawer extends HookConsumerWidget {
               style: ElevatedButton.styleFrom(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                textStyle: const TextStyle(
+                  color: Colors.white,
+                ),
               ),
               onPressed: () {
                 ref.read(authProvider.notifier).logOut();

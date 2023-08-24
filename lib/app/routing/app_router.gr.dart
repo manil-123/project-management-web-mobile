@@ -20,7 +20,7 @@ import '../../feature/dashboard/view/dashboard_screen.dart' as _i3;
 import '../../feature/project/view/projects_screen.dart' as _i4;
 import '../../feature/settings/view/change_password_screen.dart' as _i7;
 import '../../feature/settings/view/settings_screen.dart' as _i6;
-import '../../feature/settings/view/tasks_screen.dart' as _i5;
+import '../../feature/tasks/view/tasks_screen.dart' as _i5;
 import 'route_guard.dart' as _i10;
 
 class AppRouter extends _i8.RootStackRouter {
