@@ -199,13 +199,13 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<DashboardInfoResponse> getAllTasks() async {
+  Future<TasksListResponse> getAllTasks() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<DashboardInfoResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<TasksListResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -217,7 +217,7 @@ class _RestClient implements RestClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = DashboardInfoResponse.fromJson(_result.data!);
+    final value = TasksListResponse.fromJson(_result.data!);
     return value;
   }
 

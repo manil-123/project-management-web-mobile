@@ -3,6 +3,7 @@ import 'package:project_management_web_and_mobile/feature/auth/repository/auth_r
 import 'package:project_management_web_and_mobile/feature/dashboard/repository/dashboard_repository.dart';
 import 'package:project_management_web_and_mobile/feature/project/repository/project_repository.dart';
 import 'package:project_management_web_and_mobile/feature/settings/repository/settings_repository.dart';
+import 'package:project_management_web_and_mobile/feature/tasks/repository/task_repository.dart';
 import 'package:project_management_web_and_mobile/providers/dependency_providers.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>(
@@ -32,6 +33,14 @@ final projectRepositoryProvider = Provider<ProjectRepository>(
 final settingsRepositoryProvider = Provider<SettingsRepository>(
   (ref) {
     return SettingsRepositoryImpl(
+      restClient: ref.watch(restClientProvider),
+    );
+  },
+);
+
+final taskRepositoryProvider = Provider<TaskRepository>(
+  (ref) {
+    return TaskRepositoryImpl(
       restClient: ref.watch(restClientProvider),
     );
   },

@@ -6,6 +6,7 @@ import 'package:project_management_web_and_mobile/feature/project/model/create_p
 import 'package:project_management_web_and_mobile/feature/project/model/delete_project/delete_project_response.dart';
 import 'package:project_management_web_and_mobile/feature/project/model/project_list/project_list_response.dart';
 import 'package:project_management_web_and_mobile/feature/settings/model/change_password_response.dart';
+import 'package:project_management_web_and_mobile/feature/tasks/model/task_model.dart';
 import 'package:retrofit/http.dart';
 
 part 'rest_client.g.dart';
@@ -52,5 +53,5 @@ abstract class RestClient {
   });
 
   @GET(ApiEndpoints.allTicketsUrl)
-  Future<DashboardInfoResponse> getAllTasks();
+  Future<TasksListResponse> getAllTasks();
 }
