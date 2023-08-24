@@ -50,4 +50,7 @@ abstract class RestClient {
     @Field('old_password') required String oldPassword,
     @Field('new_password') required String newPassword,
   });
+
+  @GET(ApiEndpoints.allTicketsUrl)
+  Future<DashboardInfoResponse> getAllTasks();
 }
